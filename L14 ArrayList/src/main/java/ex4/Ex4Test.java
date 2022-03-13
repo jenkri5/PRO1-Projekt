@@ -31,7 +31,8 @@ public class Ex4Test {
         }
     }
 
-    private static int getSecondHighest(ArrayList<Integer> integerArrayList) {
+    @SuppressWarnings("unchecked")
+	private static int getSecondHighest(ArrayList<Integer> integerArrayList) {
         ArrayList<Integer> temp = (ArrayList<Integer>) integerArrayList.clone();
         Collections.sort(temp);
         int i = 2;
@@ -42,7 +43,8 @@ public class Ex4Test {
 
     }
 
-    private static boolean isAscending (ArrayList<Integer> integerArrayList) {
+    @SuppressWarnings("unchecked")
+	private static boolean isAscending (ArrayList<Integer> integerArrayList) {
         ArrayList<Integer> temp = (ArrayList<Integer>) integerArrayList.clone();
         Collections.sort(temp);
         return integerArrayList.equals(temp);
