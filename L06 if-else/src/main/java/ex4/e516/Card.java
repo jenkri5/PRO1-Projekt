@@ -9,6 +9,6 @@ public class Card {
     }
 
     public String getDescription() {
-        return "fak";
+        return notation;
     }
 }

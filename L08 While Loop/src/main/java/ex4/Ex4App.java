@@ -19,5 +19,6 @@ public class Ex4App {
             count++;
         }
         System.out.println("The sum of all odd digits of input: " + sum);
+        scanner.close();
     }
 }
