@@ -31,14 +31,15 @@ public class Sequence {
     }
 
     public boolean sameValues(Sequence other) {
-        int[] tempSequence = Arrays.stream(Arrays.copyOf(values, size())).sorted().distinct().toArray();
-        int[] tempOther = Arrays.stream(Arrays.copyOf(other.values, other.size())).sorted().distinct().toArray();
+        int[] tempSequence = Arrays.stream(values).sorted().distinct().toArray();
+        int[] tempOther = Arrays.stream(other.values).sorted().distinct().toArray();
         return Arrays.equals(tempSequence,tempOther);
     }
 
     public boolean isPermutationOf(Sequence other) {
-        int[] tempSequence = Arrays.stream(Arrays.copyOf(values, size())).sorted().toArray();
-        int[] tempOther = Arrays.stream(Arrays.copyOf(other.values, other.size())).sorted().toArray();
+        int[] tempSequence = Arrays.stream(values).sorted().toArray();
+        int[] tempOther = Arrays.stream(other.values).sorted().toArray();
+
         return Arrays.equals(tempSequence,tempOther);
     }
 
