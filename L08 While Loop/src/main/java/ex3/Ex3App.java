@@ -19,5 +19,6 @@ public class Ex3App {
             min++;
         }
         System.out.println("The sum of all odd numbers between a and b (inclusive): " + sum);
+        scanner.close();
     }
 }
