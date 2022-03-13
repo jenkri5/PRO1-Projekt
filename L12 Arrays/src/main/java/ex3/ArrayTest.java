@@ -8,8 +8,8 @@ public class ArrayTest {
         int[] intArray1 = {4,6,7,2,3};
         int[] intArray2 = {4,6,8,2,6,2,3};
         double[] doubleArray = {3.14, 1.34, 4.31};
-        //System.out.println(sum(intArray1));
-        //System.out.println(sum(doubleArray));
+        System.out.println(sum(intArray1));
+        System.out.println(sum(doubleArray));
         System.out.println(Arrays.toString(sumArrays2(intArray1, intArray2)));
     }
 

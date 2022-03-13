@@ -6,8 +6,8 @@ public class TestStudent {
         Student s1 = new Student("Hanne");
         Student s2 = new Student("Margrethe");
 
-        //System.out.println(s1.getName());
-        //System.out.println(s2.getName());
+        System.out.println(s1.getName());
+        System.out.println(s2.getName());
 
         s1.addGrade(5);
         s1.addGrade(10);

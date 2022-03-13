@@ -6,8 +6,8 @@ public class TestChild {
         Child b1 = new Child("Emma");
         Child b2 = new Child("Oliver");
 
-        //System.out.println(b1.getName());
-        //System.out.println(b2.getName());
+        System.out.println(b1.getName());
+        System.out.println(b2.getName());
 
 
         b1.addWeight(4.2);
