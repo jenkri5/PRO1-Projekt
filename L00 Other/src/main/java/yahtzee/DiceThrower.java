@@ -5,50 +5,51 @@ import java.util.Comparator;
 
 public class DiceThrower {
 
-    private Die[] m_Dices;
+    private Die[] m_Dice;
     private int m_RollCount;
-    private final int m_nDices;
+    private final int m_nDice;
     
-    public DiceThrower(int nDices) {
-    	m_Dices = new Die[nDices];
+    public DiceThrower(int nDice) {
+    	m_Dice = new Die[nDice];
     	m_RollCount = 0;
-    	m_nDices = nDices;
-    	generateDices(nDices);
+    	m_nDice = nDice;
+    	generateDice(nDice);
     }
     
-	public void generateDices(int nDices) {
-    	for(int i = 0; i < nDices; i++)
-    		m_Dices[i] = new Die();
+	public void generateDice(int nDice) {
+    	for(int i = 0; i < nDice; i++)
+    		m_Dice[i] = new Die();
     }
 
     public void roll() {
-        for(Die die : m_Dices)
+        for(Die die : m_Dice)
             if(!die.isLocked())
                 die.roll();
         m_RollCount++;
     }
     
     public void roll2() {
-    	Arrays.stream(m_Dices).filter(die -> !die.isLocked()).forEach(Die::roll);
+    	Arrays.stream(m_Dice).filter(die -> !die.isLocked()).forEach(Die::roll);
     	m_RollCount++;   
+    	
     }
 
     public void roll3() {
-    	Arrays.stream(m_Dices).filter(die -> !die.isLocked()).forEach(Die::roll);
-    	m_Dices = Arrays.stream(m_Dices).sorted(Comparator.comparing(Die::isLocked).reversed().thenComparingInt(Die::getFaceValue)).toArray(Die[]::new);
+    	Arrays.stream(m_Dice).filter(die -> !die.isLocked()).forEach(Die::roll);
+    	m_Dice = Arrays.stream(m_Dice).sorted(Comparator.comparing(Die::isLocked).reversed().thenComparingInt(Die::getFaceValue)).toArray(Die[]::new);
     	m_RollCount++;
     }
     
-    public Die[] getDices() {
-    	return m_Dices;
+    public Die[] getDice() {
+    	return m_Dice;
     }
     
     public Die getDie(int i) {
-    	return m_Dices[i];
+    	return m_Dice[i];
     }
     
-    public int getNDices() {
-    	return m_nDices;
+    public int getNDice() {
+    	return m_nDice;
     }
 
     public int getRollCount() {
@@ -60,11 +61,11 @@ public class DiceThrower {
     }
 
     public void lock(int i) {
-        m_Dices[i].setLocked();
+        m_Dice[i].setLocked();
     }
 
     public void print() {
-        for(Die die : m_Dices)
+        for(Die die : m_Dice)
             System.out.print(die.getFaceValue()+" ");
         System.out.println();
     }
