@@ -17,7 +17,7 @@ public class DiceThrower {
     	generateDice(nDice);
     }
 
-	public void generateDice(int nDice) {
+    public void generateDice(int nDice) {
     	for(int i = 0; i < nDice; i++)
     		m_Dice[i] = new Die();
     }
