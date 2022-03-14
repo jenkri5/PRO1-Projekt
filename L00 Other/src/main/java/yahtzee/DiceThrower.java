@@ -7,8 +7,8 @@ import java.util.Random;
 public class DiceThrower {
 
 	private Die[] m_Dice;
-	private int m_RollCount;
 	private final int m_nDice;
+	private int m_RollCount;
 
 	public DiceThrower(int nDice) {
 		m_Dice = new Die[nDice];
@@ -70,24 +70,24 @@ public class DiceThrower {
 		private int m_FaceValue;
 		private boolean m_IsLocked = false;
 
-		public Die() {
+		private Die() {
 			m_FaceCount = 6;
 		}
 
-		public int getFaceValue() {
+		private int getFaceValue() {
 			return m_FaceValue;
 		}
 
-		public void setLocked() {
+		private void setLocked() {
 			m_IsLocked = !m_IsLocked;
 		}
 
-		public boolean isLocked() {
+		private boolean isLocked() {
 			return m_IsLocked;
 		}
 
-		public void roll() {
-			this.m_FaceValue = rand.nextInt(0, m_FaceCount) + 1;
+		private void roll() {
+			m_FaceValue = rand.nextInt(0, m_FaceCount) + 1;
 		}
 
 	}

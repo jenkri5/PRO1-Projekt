@@ -5,8 +5,8 @@ public class Game {
 	private final int[] PLAYERS;
 	private final int[][] BOARD;
 	private final DiceThrower DICE_THROWER;
+	private boolean m_GAME_OVER;
 	private int m_PlayerTurn;
-	private boolean GAME_OVER;
 
 	public Game(int nPlayers, int nDice) {
 		PLAYERS = new int[nPlayers];
@@ -21,7 +21,7 @@ public class Game {
 	}
 
 	public void run() {
-		while (!GAME_OVER) {
+		while (!m_GAME_OVER) {
 			// GAME LOGIC
 			DICE_THROWER.roll();
 			DICE_THROWER.print();
@@ -33,7 +33,7 @@ public class Game {
 			DICE_THROWER.print();
 			DICE_THROWER.roll();
 			DICE_THROWER.print();
-			GAME_OVER = true;
+			m_GAME_OVER = true;
 		}
 	}
 
