@@ -2,11 +2,11 @@ package yahtzee;
 
 public class Game {
 
-	private int[] PLAYERS;
+	private final int[] PLAYERS;
 	private final DiceThrower DICE_THROWER = new DiceThrower(5);
 	private Board m_Board;
 	private static int m_PlayerTurn;
-	private boolean GAMEOVER;
+	private boolean GAME_OVER;
 	
 	public Game(int nPlayers) {
 		PLAYERS = new int[nPlayers];
@@ -31,8 +31,17 @@ public class Game {
 	}
 
 	public void run() {
-		while(!GAMEOVER) {			
-			GAMEOVER = true;
+		while(!GAME_OVER) {
+			// GAME LOGIC
+			DICE_THROWER.print();
+			DICE_THROWER.roll();
+			DICE_THROWER.print();
+			m_Board.print();
+
+
+
+			GAME_OVER = true;
 		}
 	}
+
 }

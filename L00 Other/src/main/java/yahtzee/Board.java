@@ -9,9 +9,9 @@ public class Board {
     }
 
     public void print() {
-        for(int i = 0; i < m_Board.length; i++) {
-            for(int j = 0; j < m_Board[i].length; j++) {
-                System.out.print(m_Board[i][j]);
+        for (int[] scores : m_Board) {
+            for (int score : scores) {
+                System.out.print(score);
             }
             System.out.println();
         }
