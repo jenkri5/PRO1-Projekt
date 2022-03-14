@@ -11,7 +11,7 @@ public class Main {
 		System.out.print("Input number of players: ");
 		int n = SCANNER.nextInt();
 		Game game = new Game(n);
-
+		
 		game.initialize();
 		game.run();
 

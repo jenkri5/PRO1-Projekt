@@ -2,6 +2,7 @@ package yahtzee;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Random;
 
 public class DiceThrower {
 
@@ -20,24 +21,15 @@ public class DiceThrower {
     	for(int i = 0; i < nDice; i++)
     		m_Dice[i] = new Die();
     }
-
-    public void roll() {
-        for(Die die : m_Dice)
-            if(!die.isLocked())
-                die.roll();
-        m_RollCount++;
-    }
     
-    public void roll2() {
+    public void roll() {
     	Arrays.stream(m_Dice).filter(die -> !die.isLocked()).forEach(Die::roll);
     	m_RollCount++;   
     	
     }
 
-    public void roll3() {
-    	Arrays.stream(m_Dice).filter(die -> !die.isLocked()).forEach(Die::roll);
+    public void sort() {
     	m_Dice = Arrays.stream(m_Dice).sorted(Comparator.comparing(Die::isLocked).reversed().thenComparingInt(Die::getFaceValue)).toArray(Die[]::new);
-    	m_RollCount++;
     }
     
     public Die[] getDice() {
@@ -70,4 +62,33 @@ public class DiceThrower {
         System.out.println();
     }
 
+    private class Die {
+
+    	private static final Random rand = new Random();
+        private final int m_FaceCount;
+        private int m_FaceValue;
+        private boolean m_IsLocked = false;
+        
+        public Die() {
+        	m_FaceCount = 6;
+        }
+
+        public int getFaceValue() {
+            return m_FaceValue;
+        }
+
+        public void setLocked() {
+            m_IsLocked = !m_IsLocked;
+        }
+
+        public boolean isLocked() {
+            return m_IsLocked;
+        }
+
+        public void roll() {
+            this.m_FaceValue = rand.nextInt(0, m_FaceCount)+1;
+        }
+        
+    }
+    
 }
