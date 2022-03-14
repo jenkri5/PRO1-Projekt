@@ -22,22 +22,21 @@ public class DiceThrower {
     }
 
     public void roll() {
-        for(Die die : m_Dices) {
+        for(Die die : m_Dices)
             if(!die.isLocked())
                 die.roll();
-        }
         m_RollCount++;
     }
     
     public void roll2() {
-    	Arrays.stream(m_Dices).filter(die -> !die.isLocked()).forEach(die -> die.roll());
+    	Arrays.stream(m_Dices).filter(die -> !die.isLocked()).forEach(Die::roll);
     	m_RollCount++;   
     	
     }
 
     public void roll3() {
-    	Arrays.stream(m_Dices).filter(die -> !die.isLocked()).forEach(die -> die.roll());
-    	m_Dices = Arrays.stream(m_Dices).sorted(Comparator.comparing(Die::isLocked).reversed().thenComparing(Comparator.comparingInt(Die::getFaceValue))).toArray(Die[]::new);
+    	Arrays.stream(m_Dices).filter(die -> !die.isLocked()).forEach(Die::roll);
+    	m_Dices = Arrays.stream(m_Dices).sorted(Comparator.comparing(Die::isLocked).reversed().thenComparingInt(Die::getFaceValue)).toArray(Die[]::new);
     	m_RollCount++;
     }
     
