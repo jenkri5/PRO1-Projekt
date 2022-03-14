@@ -4,25 +4,32 @@ import org.apache.commons.lang3.RandomUtils;
 
 public class Die {
 
-    private final RandomUtils m_randomUtils = new RandomUtils();
-    private final int m_faceCount = 6;
-    private int m_faceValue;
-    private boolean m_isLocked = false;
+    private final int m_FaceCount;
+    private int m_FaceValue;
+    private boolean m_IsLocked = false;
+    
+    public Die() {
+    	m_FaceCount = 6;
+    }
+    
+    public Die(int faceCount) {
+    	m_FaceCount = faceCount;
+    }
 
     public int getFaceValue() {
-        return m_faceValue;
+        return m_FaceValue;
     }
 
     public void setLocked() {
-        m_isLocked = !m_isLocked;
+        m_IsLocked = !m_IsLocked;
     }
 
     public boolean isLocked() {
-        return m_isLocked;
+        return m_IsLocked;
     }
 
     public void roll() {
-        this.m_faceValue = m_randomUtils.nextInt(0, m_faceCount)+1;
+        this.m_FaceValue = RandomUtils.nextInt(0, m_FaceCount)+1;
     }
-
+    
 }
