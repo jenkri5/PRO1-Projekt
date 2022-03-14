@@ -1,46 +1,73 @@
 package yahtzee;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class DiceThrower {
 
-    private final Die
-            m_die1 = new Die(),
-            m_die2 = new Die(),
-            m_die3 = new Die(),
-            m_die4 = new Die(),
-            m_die5 = new Die();
-
-    private final ArrayList<Die> m_dices = new ArrayList<>(Arrays.asList(m_die1,m_die2,m_die3,m_die4,m_die5));
-
-    private int m_rollCount = 0;
+    private Die[] m_Dices;
+    private int m_RollCount;
+    private final int m_nDices;
+    
+    public DiceThrower(int nDices) {
+    	m_Dices = new Die[nDices];
+    	m_RollCount = 0;
+    	m_nDices = nDices;
+    	generateDices(nDices);
+    }
+    
+	public void generateDices(int nDices) {
+    	for(int i = 0; i < nDices; i++)
+    		m_Dices[i] = new Die();
+    }
 
     public void roll() {
-        for(Die die : m_dices) {
+        for(Die die : m_Dices) {
             if(!die.isLocked())
                 die.roll();
         }
-        m_rollCount++;
+        m_RollCount++;
+    }
+    
+    public void roll2() {
+    	Arrays.stream(m_Dices).filter(die -> !die.isLocked()).forEach(die -> die.roll());
+    	m_RollCount++;   
+    }
+
+    public void roll3() {
+    	Arrays.stream(m_Dices).filter(die -> !die.isLocked()).forEach(die -> die.roll());
+    	m_Dices = Arrays.stream(m_Dices).sorted(Comparator.comparing(Die::isLocked).reversed().thenComparing(Comparator.comparingInt(Die::getFaceValue))).toArray(Die[]::new);
+    	m_RollCount++;
+    }
+    
+    public Die[] getDices() {
+    	return m_Dices;
+    }
+    
+    public Die getDie(int i) {
+    	return m_Dices[i];
+    }
+    
+    public int getNDices() {
+    	return m_nDices;
     }
 
     public int getRollCount() {
-        return m_rollCount;
+        return m_RollCount;
     }
 
     public void resetRollCount() {
-        m_rollCount = 0;
+        m_RollCount = 0;
     }
 
     public void lock(int i) {
-        m_dices.get(i).setLocked();
+        m_Dices[i].setLocked();
     }
 
     public void print() {
-        for(Die die : m_dices)
+        for(Die die : m_Dices)
             System.out.print(die.getFaceValue()+" ");
         System.out.println();
     }
-
 
 }

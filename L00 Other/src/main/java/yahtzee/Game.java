@@ -1,28 +1,39 @@
 package yahtzee;
 
-import java.util.ArrayList;
-import java.util.Scanner;
-
 public class Game {
 
-    private static final ArrayList<Player> PLAYERS = new ArrayList<>();
-    private static final DiceThrower DICE_THROWER = new DiceThrower();
-    private static final Scanner SCANNER = new Scanner(System.in);
-    private static Board m_board;
+	private int[] PLAYERS;
+	private final DiceThrower DICE_THROWER = new DiceThrower(5);
+	private Board m_Board;
+	private static int m_PlayerTurn;
+	private boolean GAMEOVER;
+	
+	public Game(int nPlayers) {
+		PLAYERS = new int[nPlayers];
+		m_PlayerTurn = 0;
+	}
 
-    public static void main(String[] args) {
+	public static boolean isPlayerTurn(int iPlayer, int nPlayers) {
+		return m_PlayerTurn % nPlayers == iPlayer;
+	}
 
-        System.out.print("How many players: ");
-        int n = SCANNER.nextInt();
+	public static void incrementPlayerTurn(int nPlayers) {
+		if (m_PlayerTurn == nPlayers-1)
+			m_PlayerTurn = 0;
+		else
+			m_PlayerTurn++;
+	}
 
-        for(int i = 0; i < n; i++) {
-            int playerNumber = i+1;
-            String playerName = "Player "+playerNumber;
-            PLAYERS.add(new Player(playerName));
-        }
+	public void initialize() {
+		for(int i = 0; i < PLAYERS.length; i++)
+			PLAYERS[i] = i;
+		m_Board = new Board(PLAYERS.length);
+	}
 
-        m_board = new Board(PLAYERS.size());
+	public void run() {
+		while(!GAMEOVER) {			
+			GAMEOVER = true;
+		}
+	}
 
-        m_board.print();
-    }
 }
