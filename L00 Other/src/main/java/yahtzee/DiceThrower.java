@@ -59,7 +59,7 @@ public class DiceThrower {
 
 	public void print() {
 		for (Die die : m_Dice)
-			System.out.print(die.getFaceValue() + " ");
+			System.out.print(die.m_FaceValue + " ");
 		System.out.println();
 	}
 
