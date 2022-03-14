@@ -47,7 +47,9 @@ public class Main {
 
             sequence.clear();
             System.out.println();
+
         }
+
     }
 
 }

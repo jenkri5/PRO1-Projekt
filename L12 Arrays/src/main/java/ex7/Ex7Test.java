@@ -9,12 +9,13 @@ public class Ex7Test {
 
         int[] intArray = new int[RandomUtils.nextInt(5, 11)];
         for(int i = 0; i < intArray.length; i++) {
-            if(RandomUtils.nextBoolean()) {
+            if(RandomUtils.nextBoolean())
                 intArray[i] = RandomUtils.nextInt(0,500);
-            }
             else
                 intArray[i] = RandomUtils.nextInt(0,500)*-1;
         }
+
+        System.out.println(isAscending(intArray));
 
         System.out.print("Random int array: ");
         printArray(intArray);

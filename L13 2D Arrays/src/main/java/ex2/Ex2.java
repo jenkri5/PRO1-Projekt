@@ -17,7 +17,7 @@ public class Ex2 {
         char[][] answers = new char[8][10];
         char[] correctAnswers = {'A', 'B', 'C', 'D', 'C', 'B', 'A', 'B', 'C', 'D'};
 
-        System.out.printf("Correct answers:\t%s\n",Arrays.toString(correctAnswers));
+        System.out.printf("Correct answers:\t%s\n\n",Arrays.toString(correctAnswers));
 
         for(int student = 0; student < answers.length; student++) {
             for(int question = 0; question < answers[student].length; question ++) {
