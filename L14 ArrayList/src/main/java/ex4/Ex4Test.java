@@ -10,15 +10,18 @@ public class Ex4Test {
 
     public static void main(String[] args) {
         ArrayList<Integer> integerArrayList = new ArrayList<>(List.of(1, 4, 9, 16, 25));
-        System.out.println(integerArrayList);
+        System.out.println("Array List of Integers: "+integerArrayList);
         switchFirstAndLast(integerArrayList);
-        System.out.println(integerArrayList);
+        System.out.println("Switch first and last: "+integerArrayList);
         setEvenToZero(integerArrayList);
-        System.out.println(integerArrayList);
+        System.out.println("Set evens to zero: "+integerArrayList);
         System.out.println("Second highest value: "+getSecondHighest(integerArrayList));
         System.out.println("Is ascending: "+isAscending(integerArrayList));
+        integerArrayList.sort(null);
+        System.out.println("Sort: "+integerArrayList);
+        System.out.println("Is ascending: "+isAscending(integerArrayList));
         shiftRight(integerArrayList);
-        System.out.println(integerArrayList);
+        System.out.println("Shift to right: "+integerArrayList);
         System.out.println("Has doublets: "+hasDoublets(integerArrayList));
     }
 
