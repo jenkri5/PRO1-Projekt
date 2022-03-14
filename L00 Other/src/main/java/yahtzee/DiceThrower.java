@@ -8,7 +8,7 @@ public class DiceThrower {
 
 	private Die[] m_Dice;
 	private final int m_nDice;
-	private int m_RollCount;
+	private int m_RollCount, m_Score;
 
 	public DiceThrower(int nDice) {
 		m_Dice = new Die[nDice];
@@ -20,17 +20,6 @@ public class DiceThrower {
 	public void generateDice(int nDice) {
 		for (int i = 0; i < nDice; i++)
 			m_Dice[i] = new Die();
-	}
-
-	public void roll() {
-		Arrays.stream(m_Dice).filter(die -> !die.isLocked()).forEach(Die::roll);
-		m_RollCount++;
-	}
-
-	public void sort() {
-		m_Dice = Arrays.stream(m_Dice)
-				.sorted(Comparator.comparing(Die::isLocked).reversed().thenComparingInt(Die::getFaceValue))
-				.toArray(Die[]::new);
 	}
 
 	public Die[] getDice() {
@@ -53,8 +42,25 @@ public class DiceThrower {
 		m_RollCount = 0;
 	}
 
+	public void roll() {
+		Arrays.stream(m_Dice).filter(die -> !die.isLocked()).forEach(Die::roll);
+		m_RollCount++;
+	}
+
+	public void sort() {
+		m_Dice = Arrays.stream(m_Dice)
+				.sorted(Comparator.comparing(Die::isLocked).reversed().thenComparingInt(Die::getFaceValue))
+				.toArray(Die[]::new);
+	}
+
 	public void lock(int i) {
 		m_Dice[i].setLocked();
+	}
+	
+	public int calculateScore() {
+		m_Score = 0;
+		
+		return m_Score;
 	}
 
 	public void print() {
