@@ -25,27 +25,27 @@ public class Main {
         int lastVal;
         double p;
 
-        for (int i = 1; i < input.size(); i++)
-            if (input.get(i) > input.get(indexOfNext))
-                indexOfNext = i;
+        for(int i : input)
+            if (i > input.get(indexOfNext))
+                indexOfNext = input.indexOf(i);
+
         lastVal = input.get(indexOfNext);
 
-        for (int i = 0; i < input.size(); i++) {
+        for (int ignored : input) {
             p = (double) input.get(indexOfNext) / lastVal;
             double temp = p * outputVal;
             outputVal = (int) temp;
             output.set(indexOfNext, outputVal);
             lastVal = input.get(indexOfNext);
             input.set(indexOfNext, 0);
-            for (int j = 0; j < input.size(); j++)
-                if (input.get(j) > input.get(indexOfNext))
-                    indexOfNext = j;
+            for(int i : input)
+                if (i > input.get(indexOfNext))
+                    indexOfNext = input.indexOf(i);
         }
 
         for(int i : output) {
-            for(int j = i; j > 0; j--) {
+            for(int j = i; j > 0; j--)
                 System.out.print("*");
-            }
             System.out.println();
         }
         scanner.close();
