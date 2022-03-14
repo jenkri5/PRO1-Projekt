@@ -22,7 +22,16 @@ public class Game {
 	public void run() {
 		while(!GAME_OVER) {
 			// GAME LOGIC
-			
+			DICE_THROWER.roll();
+			DICE_THROWER.print();
+			DICE_THROWER.roll();
+			DICE_THROWER.print();
+			DICE_THROWER.roll();
+			DICE_THROWER.print();
+			DICE_THROWER.roll();
+			DICE_THROWER.print();
+			DICE_THROWER.roll();
+			DICE_THROWER.print();
 			GAME_OVER = true;
 		}
 	}
