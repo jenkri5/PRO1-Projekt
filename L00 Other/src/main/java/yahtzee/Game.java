@@ -3,13 +3,14 @@ package yahtzee;
 public class Game {
 
 	private final int[] PLAYERS;
+	private final int[][] BOARD;
 	private final DiceThrower DICE_THROWER = new DiceThrower(5);
-	private Board m_Board;
 	private static int m_PlayerTurn;
 	private boolean GAME_OVER;
 	
 	public Game(int nPlayers) {
 		PLAYERS = new int[nPlayers];
+		BOARD = new int[LowerSection.values().length+UpperSection.values().length][nPlayers];
 		m_PlayerTurn = 0;
 	}
 
@@ -27,7 +28,6 @@ public class Game {
 	public void initialize() {
 		for(int i = 0; i < PLAYERS.length; i++)
 			PLAYERS[i] = i;
-		m_Board = new Board(PLAYERS.length);
 	}
 
 	public void run() {
@@ -36,12 +36,25 @@ public class Game {
 			DICE_THROWER.print();
 			DICE_THROWER.roll();
 			DICE_THROWER.print();
-			m_Board.print();
+			printBoard();
 
 
 
 			GAME_OVER = true;
 		}
+	}
+
+	public void printBoard() {
+		for (int[] scores : BOARD) {
+			for (int score : scores) {
+				System.out.print(score);
+			}
+			System.out.println();
+		}
+	}
+
+	public void setScore(int section, int player, int score) {
+		BOARD[section][player] = score;
 	}
 
 }
