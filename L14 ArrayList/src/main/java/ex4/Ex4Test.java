@@ -1,5 +1,7 @@
 package ex4;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -32,7 +34,7 @@ public class Ex4Test {
     }
 
     @SuppressWarnings("unchecked")
-	private static int getSecondHighest(ArrayList<Integer> integerArrayList) {
+	private static int getSecondHighest(@NotNull ArrayList<Integer> integerArrayList) {
         ArrayList<Integer> temp = (ArrayList<Integer>) integerArrayList.clone();
         Collections.sort(temp);
         int i = 2;
@@ -44,7 +46,7 @@ public class Ex4Test {
     }
 
     @SuppressWarnings("unchecked")
-	private static boolean isAscending (ArrayList<Integer> integerArrayList) {
+	private static boolean isAscending (@NotNull ArrayList<Integer> integerArrayList) {
         ArrayList<Integer> temp = (ArrayList<Integer>) integerArrayList.clone();
         Collections.sort(temp);
         return integerArrayList.equals(temp);
