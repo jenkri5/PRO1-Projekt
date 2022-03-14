@@ -1,6 +1,7 @@
-package ex5.e719;
+package ex5.e722;
 
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class Main {
@@ -9,16 +10,22 @@ public class Main {
 
         ArrayList<Integer> input = new ArrayList<>();
         ArrayList<Integer> output = new ArrayList<>();
+        ArrayList<String> names = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Type a sequence of numbers: ");
+        System.out.print("Type a sequence of captions and values: ");
         String s = scanner.nextLine();
-        String[] numbers = s.split(" ");
+        String[] stringArr = s.split(" ");
 
-        for (String number : numbers) {
-            input.add(Integer.parseInt(number));
-            output.add(0);
+        for (int i = 0; i < stringArr.length; i++) {
+            if (i%2 == 0)
+                names.add(stringArr[i]);
+            else {
+                input.add(Integer.parseInt(stringArr[i]));
+                output.add(0);
+            }
         }
+
 
         int indexOfNext = 0;
         int outputVal = 40;
@@ -43,8 +50,9 @@ public class Main {
                     indexOfNext = input.indexOf(i);
         }
 
-        for(int i : output) {
-            for(int j = i; j > 0; j--)
+        for(int i = 0; i < output.size(); i++) {
+            System.out.printf("%10s: ", names.get(i));
+            for(int j = output.get(i); j > 0; j--)
                 System.out.print("*");
             System.out.println();
         }
@@ -52,4 +60,5 @@ public class Main {
         scanner.close();
 
     }
+
 }

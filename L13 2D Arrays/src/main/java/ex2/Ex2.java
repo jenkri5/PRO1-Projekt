@@ -23,7 +23,7 @@ public class Ex2 {
             for(int question = 0; question < answers[student].length; question ++) {
                 answers[student][question] = PossibleAnswers.values()[RandomUtils.nextInt(0, PossibleAnswers.values().length)].toString().charAt(0);
             }
-            System.out.printf("Student %-3d:\t\t%s\n", student+1, Arrays.toString(answers[student]));
+            System.out.printf("Student %d:\t\t\t%s\n", student+1, Arrays.toString(answers[student]));
         }
 
         System.out.println();

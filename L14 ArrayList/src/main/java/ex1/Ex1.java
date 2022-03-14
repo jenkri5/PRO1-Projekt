@@ -1,12 +1,11 @@
 package ex1;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Ex1 {
 
     public static void main(String[] args) {
-        List<String> listOfStrings = new ArrayList<>();
+        ArrayList<String> listOfStrings = new ArrayList<>();
         listOfStrings.add("Hans");
         listOfStrings.add("Viggo");
         listOfStrings.add("Jens");
@@ -22,12 +21,10 @@ public class Ex1 {
         listOfStrings.set(2, "Hansi");
         System.out.println(listOfStrings.size());
         System.out.println(listOfStrings);
-        for(int i = 0; i < listOfStrings.size(); i++) {
-            System.out.print(listOfStrings.get(i).length()+", ");
-        }
+        for(int i = 0; i < listOfStrings.size(); i++)
+            System.out.print(listOfStrings.get(i).length()+" ");
         System.out.println();
-        for(String string : listOfStrings) {
-            System.out.print(string.length()+", ");
-        }
+        for(String string : listOfStrings)
+            System.out.print(string.length()+" ");
     }
 }
