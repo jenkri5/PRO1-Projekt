@@ -24,6 +24,5 @@ public class Game {
         m_board = new Board(PLAYERS.size());
 
         m_board.print();
-
     }
 }
