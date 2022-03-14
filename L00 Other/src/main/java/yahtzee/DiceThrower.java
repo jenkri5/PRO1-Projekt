@@ -32,6 +32,7 @@ public class DiceThrower {
     public void roll2() {
     	Arrays.stream(m_Dices).filter(die -> !die.isLocked()).forEach(die -> die.roll());
     	m_RollCount++;   
+    	
     }
 
     public void roll3() {
