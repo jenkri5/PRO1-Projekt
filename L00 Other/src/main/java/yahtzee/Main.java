@@ -10,8 +10,8 @@ public class Main {
 
 		System.out.print("Input number of players: ");
 		int n = SCANNER.nextInt();
-		Game game = new Game(n);
-		
+		Game game = new Game(n, 5);
+
 		game.initialize();
 		game.run();
 
