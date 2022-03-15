@@ -69,7 +69,7 @@ public class DiceThrower {
 		System.out.println();
 	}
 
-	private class Die {
+	private static class Die {
 
 		private static final Random rand = new Random();
 		private final int m_FaceCount;
