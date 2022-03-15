@@ -23,6 +23,7 @@
         <module>L12 Arrays</module>
         <module>L13 2D Arrays</module>
         <module>L14 ArrayList</module>
+        <module>L15 GUI 1</module>
     </modules>
 
     <dependencies>
