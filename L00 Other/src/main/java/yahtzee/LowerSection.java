@@ -1,9 +1,9 @@
 package yahtzee;
 
 public enum LowerSection {
-    THREEOF,
-    FOUROF,
-    FULLHOUSE,
+    THREE_OF,
+    FOUR_OF,
+    FULL_HOUSE,
     SMALL,
     LARGE,
     YAHTZEE,
