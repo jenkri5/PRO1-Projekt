@@ -1,4 +1,4 @@
-package guidemo_checkbox_2;
+package gui1.guidemo_checkbox_2;
 
 public class App {
 

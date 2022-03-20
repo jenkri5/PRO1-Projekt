@@ -1,4 +1,4 @@
-package guidemo_2;
+package gui1.guidemo_2;
 
 public class App {
 
