@@ -1,4 +1,4 @@
-package gui1.guidemo_checkbox_2;
+package gui.guidemo_checkbox_2;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;

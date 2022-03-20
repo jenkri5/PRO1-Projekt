@@ -1,8 +1,8 @@
-package gui1.guidemo_2;
+package gui.ex1;
 
 public class App {
 
     public static void main(String[] args) {
-        GuiDemo2.launch(GuiDemo2.class);
+        Gui.launch(Gui.class);
     }
 }

@@ -1,4 +1,4 @@
-package gui1.guidemo_1;
+package gui.guidemo_1;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;

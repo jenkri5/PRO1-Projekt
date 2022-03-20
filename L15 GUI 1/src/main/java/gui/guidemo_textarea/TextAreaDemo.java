@@ -1,4 +1,4 @@
-package gui1.guidemo_textarea;
+package gui.guidemo_textarea;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;

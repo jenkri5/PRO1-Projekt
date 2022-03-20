@@ -1,4 +1,4 @@
-package gui1.guidemo_textarea;
+package gui.guidemo_textarea;
 
 public class App {
 
