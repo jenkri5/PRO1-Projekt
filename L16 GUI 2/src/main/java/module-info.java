@@ -8,4 +8,9 @@ module gui {
     exports demoinputdialog to javafx.graphics;
     exports demoradiobutton to javafx.graphics;
     exports demotwowindows to javafx.graphics;
+    exports ex1 to javafx.graphics;
+    exports ex2 to javafx.graphics;
+    exports ex3 to javafx.graphics;
+    exports ex4 to javafx.graphics;
+    exports ex5 to javafx.graphics;
         }
