@@ -2,6 +2,7 @@ package ex2;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
+import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
@@ -52,6 +53,7 @@ public class Gui extends Application {
 
         Label lblPersons = new Label("Persons:");
         pane.add(lblPersons, 0, 3);
+        pane.setValignment(lblPersons, VPos.TOP);
         lvwPersons.setPrefSize(250, 250);
         lvwPersons.getItems().setAll(persons);
         pane.add(lvwPersons, 1, 3);

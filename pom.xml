@@ -25,6 +25,7 @@
         <module>L14 ArrayList</module>
         <module>L15 GUI 1</module>
         <module>L16 GUI 2</module>
+        <module>L17 Specifications</module>
     </modules>
 
     <dependencies>
