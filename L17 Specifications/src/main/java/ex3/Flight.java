@@ -1,71 +1,86 @@
 package ex3;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 
 /**
  * Model a flight with an airline between airports.
  */
 public class Flight {
-	//    private String flightNumber;
-	//    private String destination;
-	//    private LocalDateTime departure;
-	//    private LocalDateTime arrival;
-	//    private final ArrayList<Passenger> passengers = new ArrayList<>();
+	    private String flightNumber;
+	    private String destination;
+	    private LocalDateTime departure;
+	    private LocalDateTime arrival;
+	    private final ArrayList<Passenger> passengers = new ArrayList<>();
 
 	/**
 	 * Create a flight.<br/>
 	 * Pre: flightNumber is not empty, destination is not empty.
 	 */
 	public Flight(String flightNumber, String destination) {
-		// TODO
+		this.flightNumber = flightNumber;
+		this.destination = destination;
 	}
 
 	/**
 	 * Return the destination.
 	 */
-	// TODO
+	public String getDestination() {
+		return destination;
+	}
 
 	/**
 	 * Return the flight number.
 	 */
-	// TODO
+	public String getFlightNumber() {
+		return flightNumber;
+	}
 
 	/**
 	 * Return the date and time of departure.<br/>
 	 */
-	// TODO
+	public LocalDateTime getDeparture() {
+		return departure;
+	}
 
 	/**
 	 * Set the date and time of departure.<br>
 	 */
 	public void setDeparture(LocalDateTime departure) {
-		// TODO
+		this.departure = departure;
 	}
 
 	/**
 	 * Return the date and time of arrival.<br/>
 	 */
-	// TODO
+	public LocalDateTime getArrival() {
+		return arrival;
+	}
 
 	/**
 	 * Set the date and time of arrival.<br/>
 	 * Pre: Arrival date and time is after departure date and time.
 	 */
 	public void setArrival(LocalDateTime arrival) {
-		// TODO
+		this.arrival = arrival;
 	}
+
 	/**
 	 * Return a copy of the passenger list.
 	 */
-	// TODO
+	public ArrayList<Passenger> getPassengers() {
+		return passengers;
+	}
 
 	/**
 	 * Create and return a passenger added to the passenger list.<br/>
 	 * Pre: name is not empty, age >= 0.
 	 */
 	public Passenger addPassenger(String name, int age) {
-		// TODO
-		return null;
+		Passenger passenger = new Passenger(name, age);
+		passengers.add(passenger);
+		return passenger;
 	}
 
 	/**
@@ -74,7 +89,12 @@ public class Flight {
 	 * Pre: name is not empty.
 	 */
 	public boolean removePassenger(String name) {
-		// TODO
+		for (int i = 0; i < passengers.size(); i++) {
+			if (passengers.get(i).getName().equals(name)) {
+				passengers.remove(i);
+				return true;
+			}
+		}
 		return false;
 	}
 
@@ -82,8 +102,7 @@ public class Flight {
 	 * Return the duration of the flight measured in hours.<br/>
 	 */
 	public double durationInHours() {
-		// TODO
-		return 0.0;
+		return departure.until(arrival, ChronoUnit.HOURS);
 	}
 
 	/**
@@ -91,8 +110,7 @@ public class Flight {
 	 * midnight of the day of departure.<br/>
 	 */
 	public boolean midnightFlight() {
-		// TODO
-		return false;
+		return !departure.getDayOfWeek().equals(arrival.getDayOfWeek());
 	}
 
 	/**
@@ -100,8 +118,12 @@ public class Flight {
 	 * Pre: The passenger list is not empty.
 	 */
 	public double averagePassengerAge() {
-		// TODO
-		return 0.0;
+		int age = 0;
+		for (Passenger passenger : passengers) {
+			age += passenger.getAge();
+		}
+		age /= passengers.size();
+		return age;
 	}
 
 }
