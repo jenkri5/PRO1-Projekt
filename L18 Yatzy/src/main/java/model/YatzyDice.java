@@ -55,6 +55,7 @@ public class YatzyDice {
                 values[i] = random.nextInt(6) + 1;
             }
         }
+        throwCount++;
     }
 
     // -------------------------------------------------------------------------
