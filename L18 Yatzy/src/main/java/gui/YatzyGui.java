@@ -13,7 +13,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.YatzyDice;
 
@@ -22,7 +21,7 @@ import java.util.Objects;
 
 public class YatzyGui extends Application {
 
-    private YatzyDice dice = new YatzyDice();
+    private final YatzyDice dice = new YatzyDice();
 
     @Override
     public void start(Stage stage) {
@@ -206,7 +205,15 @@ public class YatzyGui extends Application {
             isSubmitted[i] = true;
             txfResults[i].setStyle("-fx-background-color: yellow");
             dice.resetThrowCount();
-            btnRoll.setDisable(false);
+            boolean isFinished = true;
+            for (boolean b : isSubmitted) {
+                if (!b)
+                    isFinished = false;
+            }
+            if (isFinished)
+                btnRoll.setDisable(true);
+            else
+                btnRoll.setDisable(false);
             updateText();
             unlockDice();
         }
@@ -231,20 +238,46 @@ public class YatzyGui extends Application {
             if (isSubmitted[i])
                 sumSame += sum[i];
         }
-        txfSumSame.setText(""+sumSame);
+        txfSumSame.setText("" + sumSame);
         int bonus = 0;
         if (sumSame >= 63) {
             bonus = 50;
-            txfBonus.setText(""+bonus);
+            txfBonus.setText("" + bonus);
         }
         int sumOther = 0;
         for (int i = 6; i < sum.length; i++) {
             if (isSubmitted[i])
                 sumOther += sum[i];
         }
-        txfSumOther.setText(""+sumOther);
+        txfSumOther.setText("" + sumOther);
         int total = sumSame + bonus + sumOther;
-        txfTotal.setText(""+total);
+        txfTotal.setText("" + total);
+
+        boolean sameFinished = true;
+        for (int i = 0; i < 6; i++) {
+            if (!isSubmitted[i])
+                sameFinished = false;
+        }
+        if (sameFinished) {
+            txfSumSame.setStyle("-fx-background-color: yellow");
+            txfBonus.setStyle("-fx-background-color: yellow");
+        }
+
+        boolean otherFinished = true;
+        for (int i = 6; i < isSubmitted.length; i++) {
+            if (!isSubmitted[i])
+                otherFinished = false;
+        }
+        if (otherFinished)
+            txfSumOther.setStyle("-fx-background-color: yellow");
+
+        boolean isFinished = true;
+        for (boolean b : isSubmitted) {
+            if (!b)
+                isFinished = false;
+        }
+        if (isFinished)
+            txfTotal.setStyle("-fx-background-color: yellow");
     }
 
 }
