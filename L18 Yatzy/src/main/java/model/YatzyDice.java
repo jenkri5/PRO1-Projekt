@@ -231,8 +231,10 @@ public class YatzyDice {
         int points = 0;
         int[] bucket = frequency();
         for (int value : bucket)
-            if (value > 4)
+            if (value > 4) {
                 points = 50;
+                break;
+            }
         return points;
     }
 }

@@ -207,13 +207,12 @@ public class YatzyGui extends Application {
             dice.resetThrowCount();
             boolean isFinished = true;
             for (boolean b : isSubmitted) {
-                if (!b)
+                if (!b) {
                     isFinished = false;
+                    break;
+                }
             }
-            if (isFinished)
-                btnRoll.setDisable(true);
-            else
-                btnRoll.setDisable(false);
+            btnRoll.setDisable(isFinished);
             updateText();
             unlockDice();
         }
@@ -255,8 +254,10 @@ public class YatzyGui extends Application {
 
         boolean sameFinished = true;
         for (int i = 0; i < 6; i++) {
-            if (!isSubmitted[i])
+            if (!isSubmitted[i]) {
                 sameFinished = false;
+                break;
+            }
         }
         if (sameFinished) {
             txfSumSame.setStyle("-fx-background-color: yellow");
@@ -265,16 +266,20 @@ public class YatzyGui extends Application {
 
         boolean otherFinished = true;
         for (int i = 6; i < isSubmitted.length; i++) {
-            if (!isSubmitted[i])
+            if (!isSubmitted[i]) {
                 otherFinished = false;
+                break;
+            }
         }
         if (otherFinished)
             txfSumOther.setStyle("-fx-background-color: yellow");
 
         boolean isFinished = true;
         for (boolean b : isSubmitted) {
-            if (!b)
+            if (!b) {
                 isFinished = false;
+                break;
+            }
         }
         if (isFinished)
             txfTotal.setStyle("-fx-background-color: yellow");
