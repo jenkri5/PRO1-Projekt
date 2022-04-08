@@ -27,6 +27,8 @@
         <module>L16 GUI 2</module>
         <module>L17 Specifications</module>
         <module>L18 Yatzy</module>
+        <module>L20 Connections 1</module>
+        <module>L21 Connections 2</module>
     </modules>
 
     <dependencies>
