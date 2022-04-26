@@ -1,8 +1,6 @@
 package kas.application.controller;
 
-import kas.application.model.Conference;
-import kas.application.model.Hotel;
-import kas.application.model.Participant;
+import kas.application.model.*;
 import kas.storage.Storage;
 
 import java.time.LocalDate;
@@ -64,15 +62,20 @@ public class Controller {
     }
 
     public ArrayList<String> getParticipantList(Conference conference) {
-        return new ArrayList<>();
+        ArrayList<String> participantList = new ArrayList<>();
+        for (Registration registration : conference.getRegistrations())
+            participantList.add(registration.getParticipant().getName());
+        return participantList;
     }
 
     public ArrayList<String> getExcursionList(Conference conference) {
-        return new ArrayList<>();
+        ArrayList<String> excursionList = new ArrayList<>();
+        return excursionList;
     }
 
     public ArrayList<String> getHotelList(Conference conference) {
-        return new ArrayList<>();
+        ArrayList<String> hotelList = new ArrayList<>();
+        return hotelList;
     }
 
 }

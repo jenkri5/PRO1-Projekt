@@ -28,6 +28,42 @@ public class Registration {
         this.utilities = utilities;
     }
 
+    public Conference getConference() {
+        return conference;
+    }
+
+    public Participant getParticipant() {
+        return participant;
+    }
+
+    public boolean isSpeaker() {
+        return isSpeaker;
+    }
+
+    public LocalDate getArrival() {
+        return arrival;
+    }
+
+    public LocalDate getDeparture() {
+        return departure;
+    }
+
+    public String getCompanion() {
+        return companion;
+    }
+
+    public Hotel getHotel() {
+        return hotel;
+    }
+
+    public ArrayList<Excursion> getExcursions() {
+        return new ArrayList<>(excursions);
+    }
+
+    public ArrayList<Utility> getUtilities() {
+        return new ArrayList<>(utilities);
+    }
+
     public double calculatePrice() {
         double price = 0.0;
         long days = arrival.until(departure, ChronoUnit.DAYS) + 1;
