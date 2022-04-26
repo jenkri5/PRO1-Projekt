@@ -4,7 +4,7 @@ public class Gift {
 
     final String description;
     int price;
-    Person giver, receiver;
+    Person giver;
 
     public Gift(String description, int price, Person giver) {
         this.description = description;
@@ -24,8 +24,7 @@ public class Gift {
         this.price = price;
     }
 
-    public void setReceiver(Person receiver) {
-        this.receiver = receiver;
-        receiver.gifts.add(this);
-    }
+//    public void setReceiver(Person receiver) {
+//        receiver.giftsReceived.add(this);
+//    }
 }

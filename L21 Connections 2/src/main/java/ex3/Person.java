@@ -46,4 +46,8 @@ public class Person {
             givers.add(gift.giver);
         return givers;
     }
+
+    public void addGiftReceived(Gift gift) {
+        gifts.add(gift);
+    }
 }

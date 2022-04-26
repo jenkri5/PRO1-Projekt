@@ -29,6 +29,9 @@
         <module>L18 Yatzy</module>
         <module>L20 Connections 1</module>
         <module>L21 Connections 2</module>
+        <module>L22 Architecture</module>
+        <module>l23-opsamling</module>
+        <module>L24-KAS</module>
     </modules>
 
     <dependencies>

@@ -8,15 +8,15 @@ public class Test {
         Person p3 = new Person("Julemanden", 100);
 
         Gift g1 = new Gift("Mel", 5, p3);
-        g1.setReceiver(p1);
+        p1.addGiftReceived(g1);
         Gift g2 = new Gift("Ost", 10, p3);
-        g2.setReceiver(p1);
+        p1.addGiftReceived(g2);
         Gift g3 = new Gift("Kul", 0, p3);
-        g3.setReceiver(p2);
+        p2.addGiftReceived(g3);
         Gift g4 = new Gift("Tesla", 1000000, p2);
-        g4.setReceiver(p1);
+        p1.addGiftReceived(g4);
         Gift g5 = new Gift("So", 42069, p1);
-        g5.setReceiver(p2);
+        p2.addGiftReceived(g5);
 
         System.out.println(p1);
         System.out.println("Total price: " + p1.totalPrice());
