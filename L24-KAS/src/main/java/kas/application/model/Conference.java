@@ -64,18 +64,6 @@ public class Conference {
         return registration;
     }
 
-    public ArrayList<String> getParticipantList() {
-        return new ArrayList<>();
-    }
-
-    public ArrayList<String> getExcursionList() {
-        return new ArrayList<>();
-    }
-
-    public ArrayList<String> getHotelList() {
-        return new ArrayList<>();
-    }
-
     @Override
     public String toString() {
         // TODO

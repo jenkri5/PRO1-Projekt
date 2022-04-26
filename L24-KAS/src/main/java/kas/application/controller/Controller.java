@@ -62,4 +62,17 @@ public class Controller {
     public static void deleteParticipant(Participant participant) {
         Storage.deleteParticipant(participant);
     }
+
+    public ArrayList<String> getParticipantList(Conference conference) {
+        return new ArrayList<>();
+    }
+
+    public ArrayList<String> getExcursionList(Conference conference) {
+        return new ArrayList<>();
+    }
+
+    public ArrayList<String> getHotelList(Conference conference) {
+        return new ArrayList<>();
+    }
+
 }
