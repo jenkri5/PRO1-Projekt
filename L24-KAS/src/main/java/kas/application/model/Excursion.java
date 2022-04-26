@@ -1,22 +1,18 @@
 package kas.application.model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class Excursion {
 
     private final String name;
-    private final LocalDateTime startTime;
-    private final LocalDateTime endTime;
+    private final LocalDate date;
     private final String organizer;
-    private final String description;
     private final double price;
 
-    public Excursion(String name, LocalDateTime startTime, LocalDateTime endTime, String organizer, String description, double price) {
+    public Excursion(String name, LocalDate date, String organizer, double price) {
         this.name = name;
-        this.startTime = startTime;
-        this.endTime = endTime;
+        this.date = date;
         this.organizer = organizer;
-        this.description = description;
         this.price = price;
     }
 
@@ -24,23 +20,21 @@ public class Excursion {
         return name;
     }
 
-    public LocalDateTime getStartTime() {
-        return startTime;
-    }
-
-    public LocalDateTime getEndTime() {
-        return endTime;
+    public LocalDate getDate() {
+        return date;
     }
 
     public String getOrganizer() {
         return organizer;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
     public double getPrice() {
         return price;
+    }
+
+    @Override
+    public String toString() {
+        // TODO
+        return "";
     }
 }

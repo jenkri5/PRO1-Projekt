@@ -10,7 +10,7 @@ public class Hotel {
     private final String country;
     private final double price; // per night
     private final double priceTwo; // per night
-    private final ArrayList<HotelExtra> extras = new ArrayList<>(); // nullable
+    private final ArrayList<Utility> utilities = new ArrayList<>();
 
     public Hotel(String name, String address, String city, String country, double price, double priceTwo) {
         this.name = name;
@@ -45,12 +45,20 @@ public class Hotel {
         return priceTwo;
     }
 
-    public ArrayList<HotelExtra> getExtras() {
-        return extras;
+    public ArrayList<Utility> getUtilities() {
+        return new ArrayList<>(utilities);
     }
 
-    public void createExtra(String name, double price, String description) {
-        HotelExtra extra = new HotelExtra(name, price, description);
-        extras.add(extra);
+    public Utility createUtility(String name, double price) {
+        Utility utility = new Utility(name, price);
+        utilities.add(utility);
+        return utility;
     }
+
+    @Override
+    public String toString() {
+        // TODO
+        return "";
+    }
+
 }

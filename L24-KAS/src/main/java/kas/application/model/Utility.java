@@ -1,15 +1,13 @@
 package kas.application.model;
 
-public class HotelExtra {
+public class Utility {
 
     private final String name;
     private final double price; // per night
-    private final String description;
 
-    public HotelExtra(String name, double price, String description) {
+    public Utility(String name, double price) {
         this.name = name;
         this.price = price;
-        this.description = description;
     }
 
     public String getName() {
@@ -20,8 +18,10 @@ public class HotelExtra {
         return price;
     }
 
-    public String getDescription() {
-        return description;
+    @Override
+    public String toString() {
+        // TODO
+        return "";
     }
 
 }
