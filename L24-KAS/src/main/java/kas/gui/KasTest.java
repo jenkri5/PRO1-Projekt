@@ -11,6 +11,45 @@ public class KasTest {
     public static void main(String[] args) {
         initStorage();
 
+        Conference conference = Controller.getConferences().get(0);
+
+        System.out.println(conference.getRegistrations().get(0).getParticipant().getName() + ": " + conference.getRegistrations().get(0).calculatePrice());
+        System.out.println(conference.getRegistrations().get(1).getParticipant().getName() + ": " + conference.getRegistrations().get(1).calculatePrice());
+        System.out.println(conference.getRegistrations().get(2).getParticipant().getName() + ": " + conference.getRegistrations().get(2).calculatePrice());
+        System.out.println(conference.getRegistrations().get(3).getParticipant().getName() + ": " + conference.getRegistrations().get(3).calculatePrice());
+        System.out.println(conference.getRegistrations().get(4).getParticipant().getName() + ": " + conference.getRegistrations().get(4).calculatePrice());
+
+        System.out.println(conference.listParticipants());
+        System.out.println(conference.listExcursions());
+        System.out.println(Controller.listHotels());
+    }
+
+    public static void initStorage() {
+        Controller.createConference("Hav og Himmel", 1500.0, LocalDate.of(2021, 12, 18), LocalDate.of(2021, 12, 20));
+
+        Controller.createHotel("Den Hvide Svane", 1050.0, 1250.0);
+        Controller.createHotel("Hotel Phønix", 700.0, 800.0);
+        Controller.createHotel("Pension Tusinfryd", 500.0, 600.0);
+
+        Controller.createParticipant("Finn Madsen", "Vænget 1", "Hov", "Danmark", "43214321", "finnmadsen1@gmail.com","IBM", "12341234");
+        Controller.createParticipant("Niels Petersen", "Svinget 2", "Tarm", "Danmark", "88888888", "nptrsn@msn.com",null, null);
+        Controller.createParticipant("Ulla Hansen", "Gaden 3", "Løvel", "Danmark", "11111111", "ulla.hansen123@yahoo.com",null, null);
+        Controller.createParticipant("Peter Sommer", "Vejen 4, 3-th", "Aarhus", "Danmark", "12345678", "therealpetersommer@sommer.dk",null, null);
+        Controller.createParticipant("Lone Jensen", "Väg 5", "Malmö", "Sverige", "87654321", "ljensen32@icloud.com","IKEA", "23412341");
+
+        Controller.addHotel(Controller.getConferences().get(0), Controller.getHotels().get(0));
+        Controller.addHotel(Controller.getConferences().get(0), Controller.getHotels().get(1));
+        Controller.addHotel(Controller.getConferences().get(0), Controller.getHotels().get(2));
+
+        Controller.createExcursion(Controller.getConferences().get(0), "Byrundtur, Odense", LocalDate.of(2021, 12, 18), 125.0);
+        Controller.createExcursion(Controller.getConferences().get(0), "Egeskov", LocalDate.of(2021, 12, 19), 75.0);
+        Controller.createExcursion(Controller.getConferences().get(0), "Trapholt Museum, Kolding", LocalDate.of(2021, 12, 20), 200.0);
+
+        Controller.createUtility(Controller.getHotels().get(0), "WiFi", 50.0);
+        Controller.createUtility(Controller.getHotels().get(1), "Bad", 200.0);
+        Controller.createUtility(Controller.getHotels().get(1), "WiFi", 75.0);
+        Controller.createUtility(Controller.getHotels().get(2), "Morgenmad", 100.0);
+
         ArrayList<Conference> conferences = Controller.getConferences();
         ArrayList<Participant> participants = Controller.getParticipants();
 
@@ -40,43 +79,6 @@ public class KasTest {
         ArrayList<Utility> u5 = new ArrayList<>();
         u5.add(conferences.get(0).getHotels().get(0).getUtilities().get(0));
         Controller.createRegistration(conferences.get(0), participants.get(4), true, LocalDate.of(2021, 12, 18), LocalDate.of(2021, 12, 20), "Jan Madsen", conferences.get(0).getHotels().get(0), e5, u5);
-
-        System.out.println(conferences.get(0).getRegistrations().get(0).getParticipant().getName() + ": " + conferences.get(0).getRegistrations().get(0).calculatePrice());
-        System.out.println(conferences.get(0).getRegistrations().get(1).getParticipant().getName() + ": " + conferences.get(0).getRegistrations().get(1).calculatePrice());
-        System.out.println(conferences.get(0).getRegistrations().get(2).getParticipant().getName() + ": " + conferences.get(0).getRegistrations().get(2).calculatePrice());
-        System.out.println(conferences.get(0).getRegistrations().get(3).getParticipant().getName() + ": " + conferences.get(0).getRegistrations().get(3).calculatePrice());
-        System.out.println(conferences.get(0).getRegistrations().get(4).getParticipant().getName() + ": " + conferences.get(0).getRegistrations().get(4).calculatePrice());
-
-        System.out.println(conferences.get(0).listParticipants());
-        System.out.println(conferences.get(0).listExcursions());
-        System.out.println(Controller.listHotels());
-    }
-
-    public static void initStorage() {
-        Controller.createConference("Hav og Himmel", 1500.0, LocalDate.of(2021, 12, 18), LocalDate.of(2021, 12, 20));
-
-        Controller.createHotel("Den Hvide Svane", 1050.0, 1250.0);
-        Controller.createHotel("Hotel Phønix", 700.0, 800.0);
-        Controller.createHotel("Pension Tusinfryd", 500.0, 600.0);
-
-        Controller.createParticipant("Finn Madsen", "", "", "", "43214321", "","IBM", "124124");
-        Controller.createParticipant("Niels Petersen", "", "", "", "88888888", "",null, null);
-        Controller.createParticipant("Ulla Hansen", "", "", "", "11111111", "",null, null);
-        Controller.createParticipant("Peter Sommer", "", "", "", "12345678", "",null, null);
-        Controller.createParticipant("Lone Jensen", "", "", "", "87654321", "",null, null);
-
-        Controller.addHotel(Controller.getConferences().get(0), Controller.getHotels().get(0));
-        Controller.addHotel(Controller.getConferences().get(0), Controller.getHotels().get(1));
-        Controller.addHotel(Controller.getConferences().get(0), Controller.getHotels().get(2));
-
-        Controller.createExcursion(Controller.getConferences().get(0), "Byrundtur, Odense", LocalDate.of(2021, 12, 18), 125.0);
-        Controller.createExcursion(Controller.getConferences().get(0), "Egeskov", LocalDate.of(2021, 12, 19), 75.0);
-        Controller.createExcursion(Controller.getConferences().get(0), "Trapholt Museum, Kolding", LocalDate.of(2021, 12, 20), 200.0);
-
-        Controller.createUtility(Controller.getHotels().get(0), "WiFi", 50.0);
-        Controller.createUtility(Controller.getHotels().get(1), "Bad", 200.0);
-        Controller.createUtility(Controller.getHotels().get(1), "WiFi", 75.0);
-        Controller.createUtility(Controller.getHotels().get(2), "Morgenmad", 100.0);
     }
 
 }

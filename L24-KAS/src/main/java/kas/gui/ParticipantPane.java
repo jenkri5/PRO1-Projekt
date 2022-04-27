@@ -45,6 +45,21 @@ public class ParticipantPane extends GridPane {
     }
 
     public void updateControls() {
+        Participant participant = lvwParticipants.getSelectionModel().getSelectedItem();
+        if (participant != null) {
+            String string = "Navn: " + participant.getName()
+                    + "\nAdresse: " + participant.getAddress()
+                    + "\nBy: " + participant.getCity()
+                    + "\nLand: " + participant.getCountry()
+                    + "\nTelefon: " + participant.getPhone()
+                    + "\nEmail: " + participant.getEmail();
+            if (participant.getCompany() != null)
+                string += "\nFirma: " + participant.getCompany()
+                        + "\nFirma telefon: " + participant.getCompanyPhone();
+            txaParticipant.setText(string);
+        } else {
+            txaParticipant.clear();
+        }
     }
 
 }

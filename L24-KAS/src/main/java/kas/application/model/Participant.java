@@ -1,5 +1,7 @@
 package kas.application.model;
 
+import java.util.ArrayList;
+
 public class Participant {
 
     private String name;
@@ -10,6 +12,7 @@ public class Participant {
     private String email;
     private String company; // nullable
     private String companyPhone; // nullable
+    final ArrayList<Registration> registrations = new ArrayList<>(); // association 1 --> 0..* Registration
 
     /** Pre: name not empty, address not empty, city not empty, country not empty, phone not empty, email not empty. */
     public Participant(String name, String address, String city, String country, String phone, String email, String company, String companyPhone) {
@@ -93,6 +96,10 @@ public class Participant {
 
     public void setCompanyPhone(String companyPhone) {
         this.companyPhone = companyPhone;
+    }
+
+    public ArrayList<Registration> getRegistrations() {
+        return new ArrayList<>(registrations);
     }
 
     @Override

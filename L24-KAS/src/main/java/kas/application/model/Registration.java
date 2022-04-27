@@ -27,6 +27,7 @@ public class Registration {
         this.hotel = hotel;
         this.excursions = excursions;
         this.utilities = utilities;
+        participant.registrations.add(this);
     }
 
     public Conference getConference() {
