@@ -71,27 +71,33 @@ public class Conference {
     /**
      * Return a list of the participants for this conference.
      */
-    public ArrayList<String> createParticipantList() {
-        ArrayList<String> participantList = new ArrayList<>();
-        for (Registration registration : registrations)
-            participantList.add(registration.getParticipant().getName());
-        return participantList;
+    public ArrayList<String> listParticipants() {
+        ArrayList<String> list = new ArrayList<>();
+        for (Registration registration : registrations) {
+            String s = registration.getParticipant().getName();
+            if (registration.getParticipant().getCompany() != null)
+                s += " (" + registration.getParticipant().getCompany() + ")";
+            if (registration.getCompanion() != null)
+                s += " + " + registration.getCompanion();
+            list.add(s);
+        }
+        return list;
     }
 
     /**
      * Return a list of the excursions for this conference.
      */
-    public ArrayList<String> createExcursionList() {
-        ArrayList<String> excursionList = new ArrayList<>();
-        return excursionList;
-    }
-
-    /**
-     * Return a list of the hotels for this conference.
-     */
-    public ArrayList<String> createHotelList() {
-        ArrayList<String> hotelList = new ArrayList<>();
-        return hotelList;
+    public ArrayList<String> listExcursions() {
+        ArrayList<String> list = new ArrayList<>();
+        for (Excursion excursion : excursions) {
+            list.add(excursion.getName());
+            for (Registration registration : registrations) {
+                if (registration.getExcursions().contains(excursion)) {
+                    list.add(registration.getCompanion() + " (" + registration.getParticipant().getName() + ", " + registration.getParticipant().getPhone() + ")");
+                }
+            }
+        }
+        return list;
     }
 
     @Override

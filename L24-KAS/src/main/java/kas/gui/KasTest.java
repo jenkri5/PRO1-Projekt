@@ -1,5 +1,6 @@
 package kas.gui;
 
+import kas.application.controller.Controller;
 import kas.application.model.*;
 
 import java.time.LocalDate;
@@ -9,51 +10,66 @@ public class KasTest {
 
     public static void main(String[] args) {
 
-        Participant p1 = new Participant("Finn Madsen", "", "", "", "", "",null, null);
-        Participant p2 = new Participant("Niels Petersen", "", "", "", "", "",null, null);
-        Participant p3 = new Participant("Ulla Hansen", "", "", "", "", "",null, null);
-        Participant p4 = new Participant("Peter Sommer", "", "", "", "", "",null, null);
-        Participant p5 = new Participant("Lone Jensen", "", "", "", "", "",null, null);
+        Controller.createConference("Hav og Himmel", 1500.0, LocalDate.of(2021, 12, 18), LocalDate.of(2021, 12, 20));
+        Controller.createHotel("Den Hvide Svane", 1050.0, 1250.0);
+        Controller.createHotel("Hotel Phønix", 700.0, 800.0);
+        Controller.createHotel("Pension Tusinfryd", 500.0, 600.0);
+        Controller.createParticipant("Finn Madsen", "", "", "", "43214321", "","IBM", "124124");
+        Controller.createParticipant("Niels Petersen", "", "", "", "88888888", "",null, null);
+        Controller.createParticipant("Ulla Hansen", "", "", "", "11111111", "",null, null);
+        Controller.createParticipant("Peter Sommer", "", "", "", "12345678", "",null, null);
+        Controller.createParticipant("Lone Jensen", "", "", "", "87654321", "",null, null);
 
-        Hotel h1 = new Hotel("Den Hvide Svane", 1050.0, 1250.0);
-        h1.createUtility("WiFi", 50.0);
+        ArrayList<Conference> conferences = Controller.getConferences();
+        ArrayList<Hotel> hotels = Controller.getHotels();
+        ArrayList<Participant> participants = Controller.getParticipants();
 
-        Conference c1 = new Conference("Hav og Himmel", 1500.0, LocalDate.of(2021, 12, 18), LocalDate.of(2021, 12, 20));
-        c1.createExcursion("Byrundtur, Odense", LocalDate.of(2021, 12, 18), "", 125.0);
-        c1.createExcursion("Egeskov", LocalDate.of(2021, 12, 19), "", 75.0);
-        c1.createExcursion("Trapholt Museum, Kolding", LocalDate.of(2021, 12, 20), "", 200.0);
+
+        conferences.get(0).addHotel(hotels.get(0));
+        conferences.get(0).addHotel(hotels.get(1));
+        conferences.get(0).addHotel(hotels.get(2));
+
+        conferences.get(0).createExcursion("Byrundtur, Odense", LocalDate.of(2021, 12, 18), "", 125.0);
+        conferences.get(0).createExcursion("Egeskov", LocalDate.of(2021, 12, 19), "", 75.0);
+        conferences.get(0).createExcursion("Trapholt Museum, Kolding", LocalDate.of(2021, 12, 20), "", 200.0);
+
+        hotels.get(0).createUtility("WiFi", 50.0);
 
         ArrayList<Excursion> e1 = new ArrayList<>();
         ArrayList<Utility> u1 = new ArrayList<>();
-        c1.createRegistration(p1, false, LocalDate.of(2021, 12, 18), LocalDate.of(2021, 12, 20), null, null, e1, u1);
-        System.out.println(c1.getRegistrations().get(0).calculatePrice());
+        conferences.get(0).createRegistration(participants.get(0), false, LocalDate.of(2021, 12, 18), LocalDate.of(2021, 12, 20), null, null, e1, u1);
 
         ArrayList<Excursion> e2 = new ArrayList<>();
         ArrayList<Utility> u2 = new ArrayList<>();
-        c1.createRegistration(p2, false, LocalDate.of(2021, 12, 18), LocalDate.of(2021, 12, 20), null, h1, e2, u2);
-        System.out.println(c1.getRegistrations().get(1).calculatePrice());
+        conferences.get(0).createRegistration(participants.get(1),false, LocalDate.of(2021, 12, 18), LocalDate.of(2021, 12, 20), null, conferences.get(0).getHotels().get(0), e2, u2);
 
         ArrayList<Excursion> e3 = new ArrayList<>();
-        e3.add(c1.getExcursions().get(0));
+        e3.add(conferences.get(0).getExcursions().get(0));
         ArrayList<Utility> u3 = new ArrayList<>();
-        c1.createRegistration(p3, false, LocalDate.of(2021, 12, 18), LocalDate.of(2021, 12, 19), "Hans Hansen", null, e3, u3);
-        System.out.println(c1.getRegistrations().get(2).calculatePrice());
+        conferences.get(0).createRegistration(participants.get(2), false, LocalDate.of(2021, 12, 18), LocalDate.of(2021, 12, 19), "Hans Hansen", null, e3, u3);
 
         ArrayList<Excursion> e4 = new ArrayList<>();
-        e4.add(c1.getExcursions().get(1));
-        e4.add(c1.getExcursions().get(2));
+        e4.add(conferences.get(0).getExcursions().get(1));
+        e4.add(conferences.get(0).getExcursions().get(2));
         ArrayList<Utility> u4 = new ArrayList<>();
-        u4.add(h1.getUtilities().get(0));
-        c1.createRegistration(p4, false, LocalDate.of(2021, 12, 18), LocalDate.of(2021, 12, 20), "Mie Sommer", h1, e4, u4);
-        System.out.println(c1.getRegistrations().get(3).calculatePrice());
+        u4.add(conferences.get(0).getHotels().get(0).getUtilities().get(0));
+        conferences.get(0).createRegistration(participants.get(3), false, LocalDate.of(2021, 12, 18), LocalDate.of(2021, 12, 20), "Mie Sommer", conferences.get(0).getHotels().get(0), e4, u4);
 
         ArrayList<Excursion> e5 = new ArrayList<>();
-        e5.add(c1.getExcursions().get(0));
-        e5.add(c1.getExcursions().get(1));
+        e5.add(conferences.get(0).getExcursions().get(0));
+        e5.add(conferences.get(0).getExcursions().get(1));
         ArrayList<Utility> u5 = new ArrayList<>();
-        u5.add(h1.getUtilities().get(0));
-        c1.createRegistration(p5, true, LocalDate.of(2021, 12, 18), LocalDate.of(2021, 12, 20), "Jan Madsen", h1, e5, u5);
-        System.out.println(c1.getRegistrations().get(4).calculatePrice());
+        u5.add(conferences.get(0).getHotels().get(0).getUtilities().get(0));
+        conferences.get(0).createRegistration(participants.get(4), true, LocalDate.of(2021, 12, 18), LocalDate.of(2021, 12, 20), "Jan Madsen", conferences.get(0).getHotels().get(0), e5, u5);
 
+        System.out.println(conferences.get(0).getRegistrations().get(0).getParticipant().getName() + ": " + conferences.get(0).getRegistrations().get(0).calculatePrice());
+        System.out.println(conferences.get(0).getRegistrations().get(1).getParticipant().getName() + ": " + conferences.get(0).getRegistrations().get(1).calculatePrice());
+        System.out.println(conferences.get(0).getRegistrations().get(2).getParticipant().getName() + ": " + conferences.get(0).getRegistrations().get(2).calculatePrice());
+        System.out.println(conferences.get(0).getRegistrations().get(3).getParticipant().getName() + ": " + conferences.get(0).getRegistrations().get(3).calculatePrice());
+        System.out.println(conferences.get(0).getRegistrations().get(4).getParticipant().getName() + ": " + conferences.get(0).getRegistrations().get(4).calculatePrice());
+
+        System.out.println(conferences.get(0).listParticipants());
+        System.out.println(conferences.get(0).listExcursions());
+        System.out.println(Controller.listHotels());
     }
 }

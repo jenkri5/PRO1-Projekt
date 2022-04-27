@@ -91,4 +91,30 @@ public class Controller {
         Storage.deleteParticipant(participant);
     }
 
+    /**
+     * Return a list of the hotels for each conference.
+     */
+    public static ArrayList<String> listHotels() {
+        ArrayList<String> list = new ArrayList<>();
+        for (Hotel hotel : Storage.getHotels()) {
+            list.add(hotel.getName());
+            for (Conference conference :Storage.getConferences()) {
+                if (conference.getHotels().contains(hotel)) {
+                    list.add(conference.getName());
+                    for (Registration registration : conference.getRegistrations()) {
+                        if (registration.getHotel() != null) {
+                            if (registration.getHotel().equals(hotel)) {
+                                if (registration.getCompanion() != null)
+                                    list.add(registration.getParticipant().getName() + " + " + registration.getCompanion());
+                                else
+                                    list.add(registration.getParticipant().getName());
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return list;
+    }
+
 }
