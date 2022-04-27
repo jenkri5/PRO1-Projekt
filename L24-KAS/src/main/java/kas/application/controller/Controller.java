@@ -10,14 +10,29 @@ public class Controller {
 
     public static void initStorage() {
         createConference("Hav og Himmel", 1500.0, LocalDate.of(2021, 12, 18), LocalDate.of(2021, 12, 20));
+
         createHotel("Den Hvide Svane", 1050.0, 1250.0);
         createHotel("Hotel Phønix", 700.0, 800.0);
         createHotel("Pension Tusinfryd", 500.0, 600.0);
+
         createParticipant("Finn Madsen", "", "", "", "43214321", "","IBM", "124124");
         createParticipant("Niels Petersen", "", "", "", "88888888", "",null, null);
         createParticipant("Ulla Hansen", "", "", "", "11111111", "",null, null);
         createParticipant("Peter Sommer", "", "", "", "12345678", "",null, null);
         createParticipant("Lone Jensen", "", "", "", "87654321", "",null, null);
+
+        addHotel(getConferences().get(0), getHotels().get(0));
+        addHotel(getConferences().get(0), getHotels().get(1));
+        addHotel(getConferences().get(0), getHotels().get(2));
+
+        createExcursion(getConferences().get(0), "Byrundtur, Odense", LocalDate.of(2021, 12, 18), "", 125.0);
+        createExcursion(getConferences().get(0), "Egeskov", LocalDate.of(2021, 12, 19), "", 75.0);
+        createExcursion(getConferences().get(0), "Trapholt Museum, Kolding", LocalDate.of(2021, 12, 20), "", 200.0);
+
+        createUtility(getHotels().get(0), "WiFi", 50.0);
+        createUtility(getHotels().get(1), "Bad", 200.0);
+        createUtility(getHotels().get(1), "WiFi", 75.0);
+        createUtility(getHotels().get(2), "Morgenmad", 100.0);
     }
 
     /**

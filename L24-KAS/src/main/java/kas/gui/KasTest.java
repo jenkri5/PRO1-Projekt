@@ -13,18 +13,7 @@ public class KasTest {
         Controller.initStorage();
 
         ArrayList<Conference> conferences = Controller.getConferences();
-        ArrayList<Hotel> hotels = Controller.getHotels();
         ArrayList<Participant> participants = Controller.getParticipants();
-
-        Controller.addHotel(conferences.get(0), hotels.get(0));
-        Controller.addHotel(conferences.get(0), hotels.get(1));
-        Controller.addHotel(conferences.get(0), hotels.get(2));
-
-        Controller.createExcursion(conferences.get(0), "Byrundtur, Odense", LocalDate.of(2021, 12, 18), "", 125.0);
-        Controller.createExcursion(conferences.get(0), "Egeskov", LocalDate.of(2021, 12, 19), "", 75.0);
-        Controller.createExcursion(conferences.get(0), "Trapholt Museum, Kolding", LocalDate.of(2021, 12, 20), "", 200.0);
-
-        Controller.createUtility(hotels.get(0), "WiFi", 50.0);
 
         ArrayList<Excursion> e1 = new ArrayList<>();
         ArrayList<Utility> u1 = new ArrayList<>();
@@ -62,5 +51,7 @@ public class KasTest {
         System.out.println(conferences.get(0).listParticipants());
         System.out.println(conferences.get(0).listExcursions());
         System.out.println(Controller.listHotels());
+
     }
+
 }
