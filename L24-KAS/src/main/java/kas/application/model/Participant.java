@@ -70,7 +70,7 @@ public class Participant {
         this.email = email;
     }
 
-    // nullable return value
+    /** Note: Nullable return value. */
     public String getCompany() {
         return company;
     }
@@ -79,7 +79,7 @@ public class Participant {
         this.company = company;
     }
 
-    // nullable return value
+    /** Note: Nullable return value. */
     public String getCompanyPhone() {
         return companyPhone;
     }

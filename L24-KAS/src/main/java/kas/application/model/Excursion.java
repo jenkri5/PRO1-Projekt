@@ -9,6 +9,7 @@ public class Excursion {
     private final String organizer;
     private final double price;
 
+    /** Pre: name not empty, date = LocalDate, organizer not empty, price >= 0.0. */
     public Excursion(String name, LocalDate date, String organizer, double price) {
         this.name = name;
         this.date = date;

@@ -13,6 +13,7 @@ public class Conference {
     private final ArrayList<Excursion> excursions = new ArrayList<>(); // composition 1 --> 0..* Excursion
     private final ArrayList<Registration> registrations = new ArrayList<>(); // aggregation 1 --> 0..* Registration
 
+    /** Pre: name not empty, price >= 0.0, startDate = LocalDate later than now, endDate = LocalDate later than startDate. */
     public Conference(String name, double price, LocalDate startDate, LocalDate endDate) {
         this.name = name;
         this.price = price;
@@ -48,16 +49,19 @@ public class Conference {
         return new ArrayList<>(registrations);
     }
 
+    /** Pre: hotel = Hotel. */
     public void addHotel(Hotel hotel) {
         hotels.add(hotel);
     }
 
+    /** Pre: name not empty, date = LocalDate between startDate and endDate, organizer not empty, price >= 0.0. */
     public Excursion createExcursion(String name, LocalDate date, String organizer, double price) {
         Excursion excursion = new Excursion(name, date, organizer, price);
         excursions.add(excursion);
         return excursion;
     }
 
+    /** Pre: participant = Participant, isSpeaker = boolean, arrival = LocalDate between startDate and endDate, departure = LocalDate between arrival and endDate, excursions = ArrayList of Excursion may be empty, utilities = ArrayList of Utility may be empty. */
     public Registration createRegistration(Participant participant, boolean isSpeaker, LocalDate arrival, LocalDate departure, String companion, Hotel hotel, ArrayList<Excursion> excursions, ArrayList<Utility> utilities) {
         Registration registration = new Registration(this, participant, isSpeaker, arrival, departure, companion, hotel, excursions, utilities);
         registrations.add(registration);

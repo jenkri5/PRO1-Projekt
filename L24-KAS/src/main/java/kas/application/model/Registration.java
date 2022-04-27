@@ -48,12 +48,12 @@ public class Registration {
         return departure;
     }
 
-    // nullable return value
+    /** Note: Nullable return value. */
     public String getCompanion() {
         return companion;
     }
 
-    // nullable return value
+    /** Note: Nullable return value. */
     public Hotel getHotel() {
         return hotel;
     }
