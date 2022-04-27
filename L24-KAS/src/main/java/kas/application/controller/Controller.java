@@ -8,6 +8,18 @@ import java.util.ArrayList;
 
 public class Controller {
 
+    public static void initStorage() {
+        createConference("Hav og Himmel", 1500.0, LocalDate.of(2021, 12, 18), LocalDate.of(2021, 12, 20));
+        createHotel("Den Hvide Svane", 1050.0, 1250.0);
+        createHotel("Hotel Phønix", 700.0, 800.0);
+        createHotel("Pension Tusinfryd", 500.0, 600.0);
+        createParticipant("Finn Madsen", "", "", "", "43214321", "","IBM", "124124");
+        createParticipant("Niels Petersen", "", "", "", "88888888", "",null, null);
+        createParticipant("Ulla Hansen", "", "", "", "11111111", "",null, null);
+        createParticipant("Peter Sommer", "", "", "", "12345678", "",null, null);
+        createParticipant("Lone Jensen", "", "", "", "87654321", "",null, null);
+    }
+
     /**
      * Create a new conference.
      * Pre: name not empty, price >= 0.0, startDate = LocalDate later than now, endDate = LocalDate later than startDate.
@@ -89,6 +101,38 @@ public class Controller {
      */
     public static void deleteParticipant(Participant participant) {
         Storage.deleteParticipant(participant);
+    }
+
+    /**
+     * Add a hotel to a conference
+     * Pre: conference = Conference, hotel = Hotel.
+     */
+    public static void addHotel(Conference conference, Hotel hotel) {
+        conference.addHotel(hotel);
+    }
+
+    /**
+     * Create an excursion in a conference
+     * Pre: conference = Conference, name is not empty, date = LocalDate between conference startDate and endDate, organizer is not empty, price >= 0.0.
+     */
+    public static void createExcursion(Conference conference, String name, LocalDate date, String organizer, double price) {
+        conference.createExcursion(name, date, organizer, price);
+    }
+
+    /**
+     * Create a registration to a conference
+     * Pre: conference = Conference, participant = Participant, isSpeaker = boolean, arrival = LocalDate between conference startDate and endDate, departure = LocalDate between arrival and conference endDate
+     */
+    public static void createRegistration(Conference conference, Participant participant, boolean isSpeaker, LocalDate arrival, LocalDate departure, String companion, Hotel hotel, ArrayList<Excursion> excursions, ArrayList<Utility> utilities) {
+        conference.createRegistration(participant, isSpeaker, arrival, departure, companion, hotel, excursions, utilities);
+    }
+
+    /**
+     * Create a utility in a hotel
+     * Pre: hotel = Hotel, name is not empty, price >= 0.0.
+     */
+    public static void createUtility(Hotel hotel, String name, double price) {
+        hotel.createUtility(name, price);
     }
 
     /**
