@@ -15,7 +15,7 @@ public class KasTest {
         Participant p4 = new Participant("Peter Sommer", "", "", "", "", "",null, null);
         Participant p5 = new Participant("Lone Jensen", "", "", "", "", "",null, null);
 
-        Hotel h1 = new Hotel("Den Hvide Svane", "", "", "", 1050.0, 1250.0);
+        Hotel h1 = new Hotel("Den Hvide Svane", 1050.0, 1250.0);
         h1.createUtility("WiFi", 50.0);
 
         Conference c1 = new Conference("Hav og Himmel", 1500.0, LocalDate.of(2021, 12, 18), LocalDate.of(2021, 12, 20));

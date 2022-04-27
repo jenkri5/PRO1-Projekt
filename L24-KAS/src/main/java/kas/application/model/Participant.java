@@ -11,6 +11,7 @@ public class Participant {
     private String company; // nullable
     private String companyPhone; // nullable
 
+    /** Pre: name not empty, address not empty, city not empty, country not empty, phone not empty, email not empty. */
     public Participant(String name, String address, String city, String country, String phone, String email, String company, String companyPhone) {
         this.name = name;
         this.address = address;
@@ -26,6 +27,7 @@ public class Participant {
         return name;
     }
 
+    /** Pre: name not empty. */
     public void setName(String name) {
         this.name = name;
     }
@@ -34,6 +36,7 @@ public class Participant {
         return address;
     }
 
+    /** Pre: address not empty. */
     public void setAddress(String address) {
         this.address = address;
     }
@@ -42,6 +45,7 @@ public class Participant {
         return city;
     }
 
+    /** Pre: city not empty. */
     public void setCity(String city) {
         this.city = city;
     }
@@ -50,6 +54,7 @@ public class Participant {
         return country;
     }
 
+    /** Pre: country not empty. */
     public void setCountry(String country) {
         this.country = country;
     }
@@ -58,6 +63,7 @@ public class Participant {
         return phone;
     }
 
+    /** Pre: phone not empty. */
     public void setPhone(String phone) {
         this.phone = phone;
     }
@@ -66,6 +72,7 @@ public class Participant {
         return email;
     }
 
+    /** Pre: email not empty. */
     public void setEmail(String email) {
         this.email = email;
     }

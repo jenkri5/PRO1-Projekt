@@ -8,6 +8,10 @@ import java.util.ArrayList;
 
 public class Controller {
 
+    /**
+     * Create a new conference.
+     * Pre: name not empty, price >= 0.0, startDate = LocalDate later than now, endDate = LocalDate later than startDate.
+     */
     public static Conference createConference(String name, double price, LocalDate startDate, LocalDate endDate) {
         Conference conference = new Conference(name, price, startDate, endDate);
         Storage.storeConference(conference);
@@ -18,12 +22,20 @@ public class Controller {
         return Storage.getConferences();
     }
 
+    /**
+     * Delete a conference.
+     * Pre: conference = Conference.
+     */
     public static void deleteConference(Conference conference) {
         Storage.deleteConference(conference);
     }
 
-    public static Hotel createHotel(String name, String address, String city, String country, double price, double priceTwo) {
-        Hotel hotel = new Hotel(name, address, city, country, price, priceTwo);
+    /**
+     * Create a new hotel.
+     * Pre: name not empty, price >= 0.0, startDate = LocalDate later than now, endDate = LocalDate later than startDate.
+     */
+    public static Hotel createHotel(String name, double price, double priceTwo) {
+        Hotel hotel = new Hotel(name, price, priceTwo);
         Storage.storeHotel(hotel);
         return hotel;
     }
@@ -32,10 +44,18 @@ public class Controller {
         return Storage.getHotels();
     }
 
+    /**
+     * Delete a hotel.
+     * Pre: hotel = Hotel.
+     */
     public static void deleteHotel(Hotel hotel) {
         Storage.deleteHotel(hotel);
     }
 
+    /**
+     * Create a new participant.
+     * Pre: name not empty, address not empty, city not empty, country not empty, phone not empty, email not empty.
+     */
     public static Participant createParticipant(String name, String address, String city, String country, String phone, String email, String company, String companyPhone) {
         Participant participant = new Participant(name, address, city, country, phone, email, company, companyPhone);
         Storage.storeParticipant(participant);
@@ -46,6 +66,10 @@ public class Controller {
         return Storage.getParticipants();
     }
 
+    /**
+     * Update a participant.
+     * Pre: participant = Participant, name not empty, address not empty, city not empty, country not empty, phone not empty, email not empty.
+     */
     public static void updateParticipant(Participant participant, String name, String address, String city, String country, String phone, String email, String company, String companyPhone) {
         participant.setName(name);
         participant.setAddress(address);
@@ -53,29 +77,18 @@ public class Controller {
         participant.setCountry(country);
         participant.setPhone(phone);
         participant.setEmail(email);
-        participant.setCompany(company);
-        participant.setCompanyPhone(companyPhone);
+        if (!company.equals(""))
+            participant.setCompany(company);
+        if (!company.equals(""))
+            participant.setCompanyPhone(companyPhone);
     }
 
+    /**
+     * Delete a participant.
+     * Pre: participant = Participant.
+     */
     public static void deleteParticipant(Participant participant) {
         Storage.deleteParticipant(participant);
-    }
-
-    public ArrayList<String> createParticipantList(Conference conference) {
-        ArrayList<String> participantList = new ArrayList<>();
-        for (Registration registration : conference.getRegistrations())
-            participantList.add(registration.getParticipant().getName());
-        return participantList;
-    }
-
-    public ArrayList<String> createExcursionList(Conference conference) {
-        ArrayList<String> excursionList = new ArrayList<>();
-        return excursionList;
-    }
-
-    public ArrayList<String> createHotelList(Conference conference) {
-        ArrayList<String> hotelList = new ArrayList<>();
-        return hotelList;
     }
 
 }

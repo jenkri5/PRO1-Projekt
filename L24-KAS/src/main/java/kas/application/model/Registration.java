@@ -16,6 +16,7 @@ public class Registration {
     private final ArrayList<Excursion> excursions; // association 1 --> 0..* Excursion
     private final ArrayList<Utility> utilities; // association 1 --> 0..* Utility
 
+    /** Pre: conference = Conference, participant = Participant, isSpeaker = boolean, arrival = LocalDate, departure = LocalDate, excursions = ArrayList of Excursion, utilities = ArrayList of Utility. */
     public Registration(Conference conference, Participant participant, boolean isSpeaker, LocalDate arrival, LocalDate departure, String companion, Hotel hotel, ArrayList<Excursion> excursions, ArrayList<Utility> utilities) {
         this.conference = conference;
         this.participant = participant;
@@ -66,6 +67,9 @@ public class Registration {
         return new ArrayList<>(utilities);
     }
 
+    /**
+     * Return the price of the registration.
+     */
     public double calculatePrice() {
         double price = 0.0;
         long days = arrival.until(departure, ChronoUnit.DAYS) + 1;

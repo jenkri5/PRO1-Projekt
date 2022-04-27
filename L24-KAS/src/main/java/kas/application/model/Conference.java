@@ -68,6 +68,9 @@ public class Conference {
         return registration;
     }
 
+    /**
+     * Return a list of the participants for this conference.
+     */
     public ArrayList<String> createParticipantList() {
         ArrayList<String> participantList = new ArrayList<>();
         for (Registration registration : registrations)
@@ -75,11 +78,17 @@ public class Conference {
         return participantList;
     }
 
+    /**
+     * Return a list of the excursions for this conference.
+     */
     public ArrayList<String> createExcursionList() {
         ArrayList<String> excursionList = new ArrayList<>();
         return excursionList;
     }
 
+    /**
+     * Return a list of the hotels for this conference.
+     */
     public ArrayList<String> createHotelList() {
         ArrayList<String> hotelList = new ArrayList<>();
         return hotelList;
