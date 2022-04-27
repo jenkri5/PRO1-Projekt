@@ -27,7 +27,7 @@ public class KasGui extends Application {
 
         ParticipantPane participantPane = new ParticipantPane();
         tabParticipants.setContent(participantPane);
-        tabParticipants.setOnSelectionChanged(event -> participantPane.updateControls());
+        tabParticipants.setOnSelectionChanged(event -> participantPane.updateParticipant());
 
         Tab tabConferences = new Tab("Konferencer");
         pane.getTabs().add(tabConferences);

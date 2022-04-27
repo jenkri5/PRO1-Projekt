@@ -89,4 +89,8 @@ public class Registration {
         return price;
     }
 
+    @Override
+    public String toString() {
+        return conference.getName();
+    }
 }

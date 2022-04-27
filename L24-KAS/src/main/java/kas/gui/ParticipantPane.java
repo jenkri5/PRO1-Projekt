@@ -14,14 +14,19 @@ public class ParticipantPane extends GridPane {
 
     private final ListView<Participant> lvwParticipants = new ListView<>();
     private final TextArea txaParticipant = new TextArea();
+    private final ListView<Registration> lvwRegistrations = new ListView<>();
+    private final TextArea txaRegistration = new TextArea();
 
     public ParticipantPane() {
         setPadding(new Insets(20.0));
         setHgap(20.0);
         setVgap(10.0);
 
-        ChangeListener<Participant> listener = (ov, o, n) -> updateControls();
-        lvwParticipants.getSelectionModel().selectedItemProperty().addListener(listener);
+        ChangeListener<Participant> listenerParticipant = (ov, o, n) -> updateParticipant();
+        lvwParticipants.getSelectionModel().selectedItemProperty().addListener(listenerParticipant);
+
+        ChangeListener<Registration> listenerRegistration = (ov, o, n) -> updateRegistration();
+        lvwRegistrations.getSelectionModel().selectedItemProperty().addListener(listenerRegistration);
 
         Label lblParticipants = new Label("Deltagere");
         add(lblParticipants, 0, 0);
@@ -42,9 +47,20 @@ public class ParticipantPane extends GridPane {
         if (!lvwParticipants.getItems().isEmpty())
             lvwParticipants.getSelectionModel().select(0);
 
+        Label lblRegistrations = new Label("Tilmeldinger");
+        add(lblRegistrations, 0 , 2);
+
+        add(lvwRegistrations, 2, 1);
+        lvwRegistrations.setPrefHeight(200.0);
+        lvwRegistrations.setPrefWidth(200.0);
+        lvwRegistrations.getItems().setAll(lvwParticipants.getSelectionModel().getSelectedItem().getRegistrations());
+
+        if (!lvwRegistrations.getItems().isEmpty())
+            lvwRegistrations.getSelectionModel().select(0);
+
     }
 
-    public void updateControls() {
+    public void updateParticipant() {
         Participant participant = lvwParticipants.getSelectionModel().getSelectedItem();
         if (participant != null) {
             String string = "Navn: " + participant.getName()
@@ -60,6 +76,14 @@ public class ParticipantPane extends GridPane {
         } else {
             txaParticipant.clear();
         }
+
+        lvwRegistrations.getItems().setAll(participant.getRegistrations());
+
+        if (!lvwRegistrations.getItems().isEmpty())
+            lvwRegistrations.getSelectionModel().select(0);
+    }
+
+    private void updateRegistration() {
     }
 
 }
