@@ -39,10 +39,4 @@ public class Hotel {
         return utility;
     }
 
-    @Override
-    public String toString() {
-        // TODO
-        return "";
-    }
-
 }

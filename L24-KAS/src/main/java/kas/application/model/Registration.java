@@ -88,9 +88,4 @@ public class Registration {
         return price;
     }
 
-    @Override
-    public String toString() {
-        // TODO
-        return "";
-    }
 }

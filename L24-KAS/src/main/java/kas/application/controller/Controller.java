@@ -25,9 +25,9 @@ public class Controller {
         addHotel(getConferences().get(0), getHotels().get(1));
         addHotel(getConferences().get(0), getHotels().get(2));
 
-        createExcursion(getConferences().get(0), "Byrundtur, Odense", LocalDate.of(2021, 12, 18), "", 125.0);
-        createExcursion(getConferences().get(0), "Egeskov", LocalDate.of(2021, 12, 19), "", 75.0);
-        createExcursion(getConferences().get(0), "Trapholt Museum, Kolding", LocalDate.of(2021, 12, 20), "", 200.0);
+        createExcursion(getConferences().get(0), "Byrundtur, Odense", LocalDate.of(2021, 12, 18), 125.0);
+        createExcursion(getConferences().get(0), "Egeskov", LocalDate.of(2021, 12, 19), 75.0);
+        createExcursion(getConferences().get(0), "Trapholt Museum, Kolding", LocalDate.of(2021, 12, 20), 200.0);
 
         createUtility(getHotels().get(0), "WiFi", 50.0);
         createUtility(getHotels().get(1), "Bad", 200.0);
@@ -130,8 +130,8 @@ public class Controller {
      * Create an excursion in a conference
      * Pre: conference = Conference, name is not empty, date = LocalDate between conference startDate and endDate, organizer is not empty, price >= 0.0.
      */
-    public static void createExcursion(Conference conference, String name, LocalDate date, String organizer, double price) {
-        conference.createExcursion(name, date, organizer, price);
+    public static void createExcursion(Conference conference, String name, LocalDate date, double price) {
+        conference.createExcursion(name, date, price);
     }
 
     /**
@@ -164,7 +164,7 @@ public class Controller {
                         if (registration.getHotel() != null) {
                             if (registration.getHotel().equals(hotel)) {
                                 if (registration.getCompanion() != null)
-                                    list.add(registration.getParticipant().getName() + " + " + registration.getCompanion());
+                                    list.add(registration.getParticipant().getName() + " og " + registration.getCompanion() + ", ankomst: " + registration.getArrival() + ", afgang: " + registration.getDeparture());
                                 else
                                     list.add(registration.getParticipant().getName());
                             }

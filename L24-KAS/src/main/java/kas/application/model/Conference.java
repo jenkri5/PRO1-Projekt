@@ -32,7 +32,6 @@ public class Conference {
     public LocalDate getStartDate() {
         return startDate;
     }
-
     public LocalDate getEndDate() {
         return endDate;
     }
@@ -55,8 +54,8 @@ public class Conference {
     }
 
     /** Pre: name not empty, date = LocalDate between startDate and endDate, organizer not empty, price >= 0.0. */
-    public Excursion createExcursion(String name, LocalDate date, String organizer, double price) {
-        Excursion excursion = new Excursion(name, date, organizer, price);
+    public Excursion createExcursion(String name, LocalDate date, double price) {
+        Excursion excursion = new Excursion(name, date, price);
         excursions.add(excursion);
         return excursion;
     }
@@ -90,7 +89,7 @@ public class Conference {
     public ArrayList<String> listExcursions() {
         ArrayList<String> list = new ArrayList<>();
         for (Excursion excursion : excursions) {
-            list.add(excursion.getName());
+            list.add(excursion.getName() + " (" + excursion.getDate() + ")");
             for (Registration registration : registrations) {
                 if (registration.getExcursions().contains(excursion)) {
                     list.add(registration.getCompanion() + " (" + registration.getParticipant().getName() + ", " + registration.getParticipant().getPhone() + ")");
@@ -100,9 +99,4 @@ public class Conference {
         return list;
     }
 
-    @Override
-    public String toString() {
-        // TODO
-        return "";
-    }
 }

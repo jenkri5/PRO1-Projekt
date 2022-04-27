@@ -19,10 +19,4 @@ public class Utility {
         return price;
     }
 
-    @Override
-    public String toString() {
-        // TODO
-        return "";
-    }
-
 }

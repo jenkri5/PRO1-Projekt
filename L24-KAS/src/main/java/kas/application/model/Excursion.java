@@ -6,14 +6,12 @@ public class Excursion {
 
     private final String name;
     private final LocalDate date;
-    private final String organizer;
     private final double price;
 
     /** Pre: name not empty, date = LocalDate, organizer not empty, price >= 0.0. */
-    public Excursion(String name, LocalDate date, String organizer, double price) {
+    public Excursion(String name, LocalDate date, double price) {
         this.name = name;
         this.date = date;
-        this.organizer = organizer;
         this.price = price;
     }
 
@@ -25,17 +23,8 @@ public class Excursion {
         return date;
     }
 
-    public String getOrganizer() {
-        return organizer;
-    }
-
     public double getPrice() {
         return price;
     }
 
-    @Override
-    public String toString() {
-        // TODO
-        return "";
-    }
 }
