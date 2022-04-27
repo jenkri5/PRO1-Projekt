@@ -7,8 +7,10 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import kas.application.controller.Controller;
+import kas.application.model.Excursion;
 import kas.application.model.Participant;
 import kas.application.model.Registration;
+import kas.application.model.Utility;
 
 public class ParticipantPane extends GridPane {
 
@@ -48,16 +50,23 @@ public class ParticipantPane extends GridPane {
             lvwParticipants.getSelectionModel().select(0);
 
         Label lblRegistrations = new Label("Tilmeldinger");
-        add(lblRegistrations, 0 , 2);
+        add(lblRegistrations, 2 , 0);
 
         add(lvwRegistrations, 2, 1);
         lvwRegistrations.setPrefHeight(200.0);
         lvwRegistrations.setPrefWidth(200.0);
         lvwRegistrations.getItems().setAll(lvwParticipants.getSelectionModel().getSelectedItem().getRegistrations());
 
+        Label lblRegistration = new Label("Tilmelding");
+        add(lblRegistration, 3, 0);
+
+        add(txaRegistration, 3, 1);
+        txaRegistration.setPrefHeight(200.0);
+        txaRegistration.setPrefWidth(200.0);
+        txaRegistration.setEditable(false);
+
         if (!lvwRegistrations.getItems().isEmpty())
             lvwRegistrations.getSelectionModel().select(0);
-
     }
 
     public void updateParticipant() {
@@ -84,6 +93,32 @@ public class ParticipantPane extends GridPane {
     }
 
     private void updateRegistration() {
+        Registration registration = lvwRegistrations.getSelectionModel().getSelectedItem();
+        if (registration != null) {
+            String string = "Konference: " + registration.getConference().getName();
+            if (registration.isSpeaker())
+                string += ", er foredragsholder";
+            string += "\nAnkomst: " + registration.getArrival()
+                    + "\nAfrejse: " + registration.getDeparture();
+            if (registration.getCompanion() != null)
+                string += "\nLedsager: " + registration.getCompanion();
+            if (!registration.getExcursions().isEmpty()) {
+                string += "\nUdflugter: ";
+                for (Excursion excursion : registration.getExcursions())
+                    string += "\n - " + excursion.getName();
+            }
+            if (registration.getHotel() != null)
+                string += "\nHotel: " + registration.getHotel().getName();
+            if (!registration.getUtilities().isEmpty()) {
+                string += "\nTillæg: ";
+                for (Utility utility : registration.getUtilities())
+                    string += "\n - " + utility.getName();
+            }
+            string += "\nPris: " + registration.calculatePrice();
+            txaRegistration.setText(string);
+        } else {
+            txaRegistration.clear();
+        }
     }
 
 }
