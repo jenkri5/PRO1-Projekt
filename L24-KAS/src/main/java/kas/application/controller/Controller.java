@@ -61,19 +61,19 @@ public class Controller {
         Storage.deleteParticipant(participant);
     }
 
-    public ArrayList<String> getParticipantList(Conference conference) {
+    public ArrayList<String> createParticipantList(Conference conference) {
         ArrayList<String> participantList = new ArrayList<>();
         for (Registration registration : conference.getRegistrations())
             participantList.add(registration.getParticipant().getName());
         return participantList;
     }
 
-    public ArrayList<String> getExcursionList(Conference conference) {
+    public ArrayList<String> createExcursionList(Conference conference) {
         ArrayList<String> excursionList = new ArrayList<>();
         return excursionList;
     }
 
-    public ArrayList<String> getHotelList(Conference conference) {
+    public ArrayList<String> createHotelList(Conference conference) {
         ArrayList<String> hotelList = new ArrayList<>();
         return hotelList;
     }

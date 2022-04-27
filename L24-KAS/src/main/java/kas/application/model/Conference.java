@@ -64,19 +64,19 @@ public class Conference {
         return registration;
     }
 
-    public ArrayList<String> getParticipantList() {
+    public ArrayList<String> createParticipantList() {
         ArrayList<String> participantList = new ArrayList<>();
         for (Registration registration : registrations)
             participantList.add(registration.getParticipant().getName());
         return participantList;
     }
 
-    public ArrayList<String> getExcursionList() {
+    public ArrayList<String> createExcursionList() {
         ArrayList<String> excursionList = new ArrayList<>();
         return excursionList;
     }
 
-    public ArrayList<String> getHotelList() {
+    public ArrayList<String> createHotelList() {
         ArrayList<String> hotelList = new ArrayList<>();
         return hotelList;
     }
