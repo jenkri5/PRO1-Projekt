@@ -95,4 +95,8 @@ public class Participant {
         this.companyPhone = companyPhone;
     }
 
+    @Override
+    public String toString() {
+        return name;
+    }
 }
