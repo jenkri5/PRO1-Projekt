@@ -6,15 +6,15 @@ import java.util.ArrayList;
 
 public class Registration {
 
-    private final Conference conference;
-    private final Participant participant;
+    private final Conference conference; // association 1 --> 1 Conference
+    private final Participant participant; // association 1 --> 1 Participant
     private final boolean isSpeaker;
     private final LocalDate arrival;
     private final LocalDate departure;
     private final String companion; // nullable
-    private final Hotel hotel; // nullable
-    private final ArrayList<Excursion> excursions;
-    private final ArrayList<Utility> utilities;
+    private final Hotel hotel; // nullable, association 1 --> 0..1 Hotel
+    private final ArrayList<Excursion> excursions; // association 1 --> 0..* Excursion
+    private final ArrayList<Utility> utilities; // association 1 --> 0..* Utility
 
     public Registration(Conference conference, Participant participant, boolean isSpeaker, LocalDate arrival, LocalDate departure, String companion, Hotel hotel, ArrayList<Excursion> excursions, ArrayList<Utility> utilities) {
         this.conference = conference;
@@ -48,10 +48,12 @@ public class Registration {
         return departure;
     }
 
+    // nullable return value
     public String getCompanion() {
         return companion;
     }
 
+    // nullable return value
     public Hotel getHotel() {
         return hotel;
     }

@@ -10,7 +10,7 @@ public class Hotel {
     private final String country;
     private final double price; // per night
     private final double priceTwo; // per night
-    private final ArrayList<Utility> utilities = new ArrayList<>();
+    private final ArrayList<Utility> utilities = new ArrayList<>(); // composition 1 --> 0..* Utility
 
     public Hotel(String name, String address, String city, String country, double price, double priceTwo) {
         this.name = name;

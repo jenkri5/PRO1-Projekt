@@ -9,9 +9,9 @@ public class Conference {
     private final double price; // per day
     private final LocalDate startDate;
     private final LocalDate endDate;
-    private final ArrayList<Hotel> hotels = new ArrayList<>();
-    private final ArrayList<Excursion> excursions = new ArrayList<>();
-    private final ArrayList<Registration> registrations = new ArrayList<>();
+    private final ArrayList<Hotel> hotels = new ArrayList<>(); // association 1 --> 0..* Hotel
+    private final ArrayList<Excursion> excursions = new ArrayList<>(); // composition 1 --> 0..* Excursion
+    private final ArrayList<Registration> registrations = new ArrayList<>(); // aggregation 1 --> 0..* Registration
 
     public Conference(String name, double price, LocalDate startDate, LocalDate endDate) {
         this.name = name;
