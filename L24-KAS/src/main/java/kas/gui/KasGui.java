@@ -49,6 +49,7 @@ public class KasGui extends Application {
 
         ListPane listPane = new ListPane();
         tabLists.setContent(listPane);
+        tabLists.setOnSelectionChanged(event -> listPane.updateConference());
     }
 
 }

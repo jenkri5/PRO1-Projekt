@@ -63,7 +63,7 @@ public class ListPane extends GridPane {
             lvwConferences.getSelectionModel().select(0);
     }
 
-    private void updateConference() {
+    public void updateConference() {
         txaList.clear();
     }
 
