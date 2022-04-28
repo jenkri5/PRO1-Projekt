@@ -2,10 +2,13 @@ package kas.gui;
 
 import javafx.beans.value.ChangeListener;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import kas.application.controller.Controller;
 import kas.application.model.Excursion;
 import kas.application.model.Participant;
@@ -38,6 +41,19 @@ public class ParticipantPane extends GridPane {
         lvwParticipants.setPrefWidth(200.0);
         lvwParticipants.getItems().setAll(Controller.getParticipants());
 
+        HBox hbxParticipantButtons = new HBox(10.0);
+        add(hbxParticipantButtons, 0, 2);
+        hbxParticipantButtons.setPadding(new Insets(10, 0, 0, 0));
+        hbxParticipantButtons.setAlignment(Pos.BASELINE_CENTER);
+
+        Button btnCreateParticipant = new Button("Opret");
+        hbxParticipantButtons.getChildren().add(btnCreateParticipant);
+        btnCreateParticipant.setOnAction(event -> createParticipantAction());
+
+        Button btnUpdateParticipant = new Button("Opdater");
+        hbxParticipantButtons.getChildren().add(btnUpdateParticipant);
+        btnUpdateParticipant.setOnAction(event -> updateParticipantAction());
+
         Label lblParticipant = new Label("Deltager");
         add(lblParticipant, 1, 0);
 
@@ -46,16 +62,23 @@ public class ParticipantPane extends GridPane {
         txaParticipant.setPrefWidth(200.0);
         txaParticipant.setEditable(false);
 
-        if (!lvwParticipants.getItems().isEmpty())
-            lvwParticipants.getSelectionModel().select(0);
-
         Label lblRegistrations = new Label("Tilmeldinger");
-        add(lblRegistrations, 2 , 0);
+        add(lblRegistrations, 2, 0);
 
         add(lvwRegistrations, 2, 1);
         lvwRegistrations.setPrefHeight(200.0);
         lvwRegistrations.setPrefWidth(200.0);
-        lvwRegistrations.getItems().setAll(lvwParticipants.getSelectionModel().getSelectedItem().getRegistrations());
+        if (lvwParticipants.getSelectionModel().getSelectedItem() != null)
+            lvwRegistrations.getItems().setAll(lvwParticipants.getSelectionModel().getSelectedItem().getRegistrations());
+
+        HBox hbxRegistrationButtons = new HBox(10.0);
+        add(hbxRegistrationButtons, 2, 2);
+        hbxRegistrationButtons.setPadding(new Insets(10, 0, 0, 0));
+        hbxRegistrationButtons.setAlignment(Pos.BASELINE_CENTER);
+
+        Button btnCreateRegistration = new Button("Opret");
+        hbxRegistrationButtons.getChildren().add(btnCreateRegistration);
+        btnCreateRegistration.setOnAction(event -> createRegistrationAction());
 
         Label lblRegistration = new Label("Tilmelding");
         add(lblRegistration, 3, 0);
@@ -65,28 +88,29 @@ public class ParticipantPane extends GridPane {
         txaRegistration.setPrefWidth(200.0);
         txaRegistration.setEditable(false);
 
-        if (!lvwRegistrations.getItems().isEmpty())
-            lvwRegistrations.getSelectionModel().select(0);
+        if (!lvwParticipants.getItems().isEmpty())
+            lvwParticipants.getSelectionModel().select(0);
     }
 
     public void updateParticipant() {
         Participant participant = lvwParticipants.getSelectionModel().getSelectedItem();
         if (participant != null) {
-            String string = "Navn: " + participant.getName()
+            String description = "Navn: " + participant.getName()
                     + "\nAdresse: " + participant.getAddress()
                     + "\nBy: " + participant.getCity()
                     + "\nLand: " + participant.getCountry()
                     + "\nTelefon: " + participant.getPhone()
                     + "\nEmail: " + participant.getEmail();
             if (participant.getCompany() != null)
-                string += "\nFirma: " + participant.getCompany()
+                description += "\nFirma: " + participant.getCompany()
                         + "\nFirma telefon: " + participant.getCompanyPhone();
-            txaParticipant.setText(string);
+            txaParticipant.setText(description);
         } else {
             txaParticipant.clear();
         }
 
-        lvwRegistrations.getItems().setAll(participant.getRegistrations());
+        if (participant != null)
+            lvwRegistrations.getItems().setAll(participant.getRegistrations());
 
         if (!lvwRegistrations.getItems().isEmpty())
             lvwRegistrations.getSelectionModel().select(0);
@@ -95,30 +119,40 @@ public class ParticipantPane extends GridPane {
     private void updateRegistration() {
         Registration registration = lvwRegistrations.getSelectionModel().getSelectedItem();
         if (registration != null) {
-            String string = "Konference: " + registration.getConference().getName();
+            StringBuilder description = new StringBuilder("Konference: " + registration.getConference().getName() + "\nDeltager: " + registration.getParticipant().getName() + "\nForedragsholder: ");
             if (registration.isSpeaker())
-                string += ", er foredragsholder";
-            string += "\nAnkomst: " + registration.getArrival()
-                    + "\nAfrejse: " + registration.getDeparture();
+                description.append("Ja");
+            else
+                description.append("Nej");
+            description.append("\nAnkomst: ").append(registration.getArrival()).append("\nAfrejse: ").append(registration.getDeparture());
             if (registration.getCompanion() != null)
-                string += "\nLedsager: " + registration.getCompanion();
+                description.append("\nLedsager: ").append(registration.getCompanion().getName());
             if (!registration.getExcursions().isEmpty()) {
-                string += "\nUdflugter: ";
+                description.append("\nUdflugter: ");
                 for (Excursion excursion : registration.getExcursions())
-                    string += "\n - " + excursion.getName();
+                    description.append("\n - ").append(excursion.getName());
             }
             if (registration.getHotel() != null)
-                string += "\nHotel: " + registration.getHotel().getName();
+                description.append("\nHotel: ").append(registration.getHotel().getName());
             if (!registration.getUtilities().isEmpty()) {
-                string += "\nTillæg: ";
+                description.append("\nTillæg: ");
                 for (Utility utility : registration.getUtilities())
-                    string += "\n - " + utility.getName();
+                    description.append("\n - ").append(utility.getName());
             }
-            string += "\nPris: " + registration.calculatePrice();
-            txaRegistration.setText(string);
+            description.append("\nPris: ").append(registration.calculatePrice());
+            txaRegistration.setText(description.toString());
         } else {
             txaRegistration.clear();
         }
+    }
+
+    private void createParticipantAction() {
+    }
+
+    private void updateParticipantAction() {
+    }
+
+    private void createRegistrationAction() {
     }
 
 }

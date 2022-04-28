@@ -12,6 +12,7 @@ public class Conference {
     private final ArrayList<Hotel> hotels = new ArrayList<>(); // association 1 --> 0..* Hotel
     private final ArrayList<Excursion> excursions = new ArrayList<>(); // composition 1 --> 0..* Excursion
     private final ArrayList<Registration> registrations = new ArrayList<>(); // aggregation 1 --> 0..* Registration
+    final ArrayList<Companion> companions = new ArrayList<>(); // association 1 --> 0..* Companion
 
     /** Pre: name not empty, price >= 0.0, startDate = LocalDate later than now, endDate = LocalDate later than startDate. */
     public Conference(String name, double price, LocalDate startDate, LocalDate endDate) {
@@ -72,12 +73,15 @@ public class Conference {
      */
     public ArrayList<String> listParticipants() {
         ArrayList<String> list = new ArrayList<>();
+        list.add("Konference: " + name);
         for (Registration registration : registrations) {
-            String s = registration.getParticipant().getName();
+            String s = "  - " + registration.getParticipant().getName();
             if (registration.getParticipant().getCompany() != null)
                 s += " (" + registration.getParticipant().getCompany() + ")";
             if (registration.getCompanion() != null)
-                s += " + " + registration.getCompanion();
+                s += " + " + registration.getCompanion().getName();
+            if (registration.isSpeaker())
+                s += ", foredragsholder";
             list.add(s);
         }
         return list;
@@ -88,15 +92,17 @@ public class Conference {
      */
     public ArrayList<String> listExcursions() {
         ArrayList<String> list = new ArrayList<>();
+        list.add("Konference: " + name);
         for (Excursion excursion : excursions) {
-            list.add(excursion.getName() + " (" + excursion.getDate() + ")");
-            for (Registration registration : registrations) {
-                if (registration.getExcursions().contains(excursion)) {
-                    list.add(registration.getCompanion() + " (" + registration.getParticipant().getName() + ", " + registration.getParticipant().getPhone() + ")");
-                }
-            }
+            list.add("  Udflugt: " + excursion.getName() + " (" + excursion.getDate() + ")");
+            for (Companion companion : excursion.companions)
+                list.add("    - " + companion.getName() + " (" + companion.getParticipant().getName() + ", " + companion.getParticipant().getPhone() + ")");
         }
         return list;
     }
 
+    @Override
+    public String toString() {
+        return name;
+    }
 }

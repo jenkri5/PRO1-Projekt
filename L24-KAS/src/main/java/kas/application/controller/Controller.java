@@ -129,17 +129,17 @@ public class Controller {
     public static ArrayList<String> listHotels() {
         ArrayList<String> list = new ArrayList<>();
         for (Hotel hotel : Storage.getHotels()) {
-            list.add(hotel.getName());
+            list.add("Hotel: " + hotel.getName());
             for (Conference conference :Storage.getConferences()) {
                 if (conference.getHotels().contains(hotel)) {
-                    list.add(conference.getName());
+                    list.add("  Konference: " + conference.getName());
                     for (Registration registration : conference.getRegistrations()) {
                         if (registration.getHotel() != null) {
                             if (registration.getHotel().equals(hotel)) {
                                 if (registration.getCompanion() != null)
-                                    list.add(registration.getParticipant().getName() + " og " + registration.getCompanion() + ", ankomst: " + registration.getArrival() + ", afgang: " + registration.getDeparture());
+                                    list.add("   - " + registration.getParticipant().getName() + " + " + registration.getCompanion().getName() + "\n       Ankomst: " + registration.getArrival() + "\n       Afrejse: " + registration.getDeparture());
                                 else
-                                    list.add(registration.getParticipant().getName());
+                                    list.add("   - " + registration.getParticipant().getName() + "\n       Ankomst: " + registration.getArrival() + "\n       Afrejse: " + registration.getDeparture());
                             }
                         }
                     }

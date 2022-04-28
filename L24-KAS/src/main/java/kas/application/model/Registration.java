@@ -11,23 +11,31 @@ public class Registration {
     private final boolean isSpeaker;
     private final LocalDate arrival;
     private final LocalDate departure;
-    private final String companion; // nullable
+    private final Companion companion; // nullable, association 1 --> 0..1 Companion
     private final Hotel hotel; // nullable, association 1 --> 0..1 Hotel
     private final ArrayList<Excursion> excursions; // association 1 --> 0..* Excursion
     private final ArrayList<Utility> utilities; // association 1 --> 0..* Utility
 
-    /** Pre: conference = Conference, participant = Participant, isSpeaker = boolean, arrival = LocalDate, departure = LocalDate, excursions = ArrayList of Excursion, utilities = ArrayList of Utility. */
+    /**
+     * Pre: conference = Conference, participant = Participant, isSpeaker = boolean, arrival = LocalDate, departure = LocalDate, excursions = ArrayList of Excursion, utilities = ArrayList of Utility.
+     */
     public Registration(Conference conference, Participant participant, boolean isSpeaker, LocalDate arrival, LocalDate departure, String companion, Hotel hotel, ArrayList<Excursion> excursions, ArrayList<Utility> utilities) {
         this.conference = conference;
         this.participant = participant;
+        participant.registrations.add(this);
         this.isSpeaker = isSpeaker;
         this.arrival = arrival;
         this.departure = departure;
-        this.companion = companion;
+        if (companion != null) {
+            this.companion = new Companion(companion, participant, excursions);
+            conference.companions.add(this.companion);
+        } else
+            this.companion = null;
         this.hotel = hotel;
+        if (hotel != null)
+            hotel.registrations.add(this);
         this.excursions = excursions;
         this.utilities = utilities;
-        participant.registrations.add(this);
     }
 
     public Conference getConference() {
@@ -50,12 +58,16 @@ public class Registration {
         return departure;
     }
 
-    /** Note: Nullable return value. */
-    public String getCompanion() {
+    /**
+     * Note: Nullable return value.
+     */
+    public Companion getCompanion() {
         return companion;
     }
 
-    /** Note: Nullable return value. */
+    /**
+     * Note: Nullable return value.
+     */
     public Hotel getHotel() {
         return hotel;
     }

@@ -16,6 +16,7 @@ public class KasGui extends Application {
 
         Scene scene = new Scene(pane);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
@@ -34,14 +35,20 @@ public class KasGui extends Application {
 
         ConferencePane conferencePane = new ConferencePane();
         tabConferences.setContent(conferencePane);
-        tabConferences.setOnSelectionChanged(event -> conferencePane.updateControls());
+        tabConferences.setOnSelectionChanged(event -> conferencePane.updateConference());
 
         Tab tabHotels = new Tab("Hoteller");
         pane.getTabs().add(tabHotels);
 
         HotelPane hotelPane = new HotelPane();
         tabHotels.setContent(hotelPane);
-        tabHotels.setOnSelectionChanged(event -> hotelPane.updateControls());
+        tabHotels.setOnSelectionChanged(event -> hotelPane.updateHotel());
+
+        Tab tabLists = new Tab("Lister");
+        pane.getTabs().add(tabLists);
+
+        ListPane listPane = new ListPane();
+        tabLists.setContent(listPane);
     }
 
 }
