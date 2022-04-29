@@ -99,7 +99,7 @@ public class Registration {
     }
 
     /** Pre: companionName is not empty. */
-    public Companion createCompanion(String companionName, Participant participant, ArrayList<Excursion> excursions) {
+    private Companion createCompanion(String companionName, Participant participant, ArrayList<Excursion> excursions) {
         Companion companion = new Companion(companionName, participant, excursions);
         return companion;
     }

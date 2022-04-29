@@ -147,9 +147,25 @@ public class ParticipantPane extends GridPane {
     }
 
     private void createParticipantAction() {
+        ParticipantWindow dialog = new ParticipantWindow("Opret Deltager", null);
+        dialog.showAndWait();
+
+        lvwParticipants.getItems().setAll(Controller.getParticipants());
+        int index = lvwParticipants.getItems().size() - 1;
+        lvwParticipants.getSelectionModel().select(index);
     }
 
     private void updateParticipantAction() {
+        Participant participant = lvwParticipants.getSelectionModel().getSelectedItem();
+        if (participant == null)
+            return;
+
+        ParticipantWindow dialog = new ParticipantWindow("Opdater Deltager", participant);
+        dialog.showAndWait();
+
+        lvwParticipants.getItems().setAll(Controller.getParticipants());
+        int index = lvwParticipants.getItems().size() - 1;
+        lvwParticipants.getSelectionModel().select(index);
     }
 
     private void createRegistrationAction() {
