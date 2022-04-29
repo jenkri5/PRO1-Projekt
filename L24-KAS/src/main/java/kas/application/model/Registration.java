@@ -17,19 +17,19 @@ public class Registration {
     private final ArrayList<Utility> utilities; // association 1 --> 0..* Utility
 
     /**
-     * Pre: The participant is not already registered for the conference, arrival is at latest endDate, departure is after arrival and at latest endDate.
+     * Pre: The participant is not already registered for the conference, arrival is at latest endDate, departure is after arrival and at latest endDate, content of excursions are connected to conference, content of utilities are connected to hotel.
      */
-    public Registration(Conference conference, Participant participant, boolean isSpeaker, LocalDate arrival, LocalDate departure, String companion, Hotel hotel, ArrayList<Excursion> excursions, ArrayList<Utility> utilities) {
+    public Registration(Conference conference, Participant participant, boolean isSpeaker, LocalDate arrival, LocalDate departure, String companionName, Hotel hotel, ArrayList<Excursion> excursions, ArrayList<Utility> utilities) {
         this.conference = conference;
         this.participant = participant;
         participant.registrations.add(this);
         this.isSpeaker = isSpeaker;
         this.arrival = arrival;
         this.departure = departure;
-        if (companion != null) {
-            this.companion = new Companion(companion, participant);
+        if (companionName != null) {
+            companion = createCompanion(companionName, participant);
         } else
-            this.companion = null;
+            companion = null;
         this.hotel = hotel;
         this.excursions = excursions;
         this.utilities = utilities;
@@ -96,6 +96,12 @@ public class Registration {
         for (Excursion excursion : excursions)
             price += excursion.getPrice();
         return price;
+    }
+
+    /** Pre: companionName is not empty. */
+    public Companion createCompanion(String companionName, Participant participant) {
+        Companion companion = new Companion(companionName, participant);
+        return companion;
     }
 
     @Override

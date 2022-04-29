@@ -11,7 +11,7 @@ public class Conference {
     private final LocalDate endDate;
     private final ArrayList<Hotel> hotels = new ArrayList<>(); // association 0..* --> 0..* Hotel
     private final ArrayList<Excursion> excursions = new ArrayList<>(); // composition 1 --> 0..* Excursion
-    private final ArrayList<Registration> registrations = new ArrayList<>(); // aggregation 1 --> 0..* Registration
+    private final ArrayList<Registration> registrations = new ArrayList<>(); // composition 1 --> 0..* Registration
 
     /** Pre: name not empty, price >= 0.0, startDate is later than now, endDate is later than startDate. */
     public Conference(String name, double price, LocalDate startDate, LocalDate endDate) {

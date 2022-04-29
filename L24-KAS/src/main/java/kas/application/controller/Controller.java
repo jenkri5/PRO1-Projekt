@@ -75,10 +75,8 @@ public class Controller {
         participant.setCountry(country);
         participant.setPhone(phone);
         participant.setEmail(email);
-        if (!company.equals(""))
-            participant.setCompany(company);
-        if (!company.equals(""))
-            participant.setCompanyPhone(companyPhone);
+        participant.setCompany(company);
+        participant.setCompanyPhone(companyPhone);
     }
 
     /**
