@@ -11,8 +11,8 @@ import kas.application.model.Participant;
 
 public class RegistrationWindow extends Stage {
 
-    private Participant participant; // nullable
-    private Conference conference; // nullable
+    private final Participant participant; // nullable
+    private final Conference conference; // nullable
 
     public RegistrationWindow(Participant participant, Conference conference) {
         initStyle(StageStyle.UTILITY);
@@ -30,11 +30,28 @@ public class RegistrationWindow extends Stage {
         setScene(scene);
     }
 
+    public RegistrationWindow(Participant participant) {
+        initStyle(StageStyle.UTILITY);
+        initModality(Modality.APPLICATION_MODAL);
+        setResizable(false);
+
+        this.participant = participant;
+        conference = null;
+
+        setTitle("Tilmeld " + participant.getName());
+        GridPane pane = new GridPane();
+        initContent(pane);
+
+        Scene scene = new Scene(pane);
+        setScene(scene);
+    }
+
     public RegistrationWindow(Conference conference) {
         initStyle(StageStyle.UTILITY);
         initModality(Modality.APPLICATION_MODAL);
         setResizable(false);
 
+        participant = null;
         this.conference = conference;
 
         setTitle("Tilmeld " + conference.getName());

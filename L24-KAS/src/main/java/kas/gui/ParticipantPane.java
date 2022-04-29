@@ -51,6 +51,10 @@ public class ParticipantPane extends GridPane {
         hbxParticipantButtons.getChildren().add(btnUpdateParticipant);
         btnUpdateParticipant.setOnAction(event -> updateParticipantAction());
 
+        Button btnCreateRegistation = new Button("Tilmeld");
+        hbxParticipantButtons.getChildren().add(btnCreateRegistation);
+        btnCreateRegistation.setOnAction(event -> createRegistrationAction());
+
         Label lblParticipant = new Label("Deltager");
         add(lblParticipant, 1, 0);
 
@@ -166,6 +170,19 @@ public class ParticipantPane extends GridPane {
         int index = lvwParticipants.getSelectionModel().getSelectedIndex();
         lvwParticipants.getItems().setAll(Controller.getParticipants());
         lvwParticipants.getSelectionModel().select(index);
+    }
+
+    private void createRegistrationAction() {
+        Participant participant = lvwParticipants.getSelectionModel().getSelectedItem();
+        if (participant == null)
+            return;
+
+        SelectionWindow dialog = new SelectionWindow(participant);
+        dialog.showAndWait();
+
+        lvwRegistrations.getItems().setAll(participant.getRegistrations());
+        int index = lvwRegistrations.getItems().size() - 1;
+        lvwRegistrations.getSelectionModel().select(index);
     }
 
 }

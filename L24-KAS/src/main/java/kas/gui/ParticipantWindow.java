@@ -17,7 +17,7 @@ public class ParticipantWindow extends Stage {
 
     private final Participant participant; // nullable
 
-    /** Note: Nullable param employee. */
+    /** Note: Nullable param participant. */
     public ParticipantWindow(String title, Participant participant) {
         initStyle(StageStyle.UTILITY);
         initModality(Modality.APPLICATION_MODAL);
