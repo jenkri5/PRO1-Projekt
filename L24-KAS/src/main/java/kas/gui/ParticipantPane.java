@@ -51,9 +51,9 @@ public class ParticipantPane extends GridPane {
         hbxParticipantButtons.getChildren().add(btnUpdateParticipant);
         btnUpdateParticipant.setOnAction(event -> updateParticipantAction());
 
-        Button btnCreateRegistation = new Button("Tilmeld");
-        hbxParticipantButtons.getChildren().add(btnCreateRegistation);
-        btnCreateRegistation.setOnAction(event -> createRegistrationAction());
+        Button btnCreateRegistration = new Button("Tilmeld");
+        hbxParticipantButtons.getChildren().add(btnCreateRegistration);
+        btnCreateRegistration.setOnAction(event -> createRegistrationAction());
 
         Label lblParticipant = new Label("Deltager");
         add(lblParticipant, 1, 0);
