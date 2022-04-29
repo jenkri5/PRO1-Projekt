@@ -6,15 +6,11 @@ public class Companion {
 
     private final String name;
     private final Participant participant; // association 0..* --> 1
-    private final ArrayList<Excursion> excursions; // association 0..* --> 0..* Excursion
 
     /** Pre: name is not empty. */
-    public Companion(String name, Participant participant, ArrayList<Excursion> excursions) {
+    public Companion(String name, Participant participant) {
         this.name = name;
         this.participant = participant;
-        this.excursions = new ArrayList<>(excursions);
-        for (Excursion excursion : excursions)
-            excursion.companions.add(this);
     }
 
     public String getName() {
@@ -23,10 +19,6 @@ public class Companion {
 
     public Participant getParticipant() {
         return participant;
-    }
-
-    public ArrayList<Excursion> getExcursions() {
-        return new ArrayList<>(excursions);
     }
 
 }

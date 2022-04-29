@@ -9,10 +9,9 @@ public class Conference {
     private final double price; // per day
     private final LocalDate startDate;
     private final LocalDate endDate;
-    private final ArrayList<Hotel> hotels = new ArrayList<>(); // association 1 --> 0..* Hotel
+    private final ArrayList<Hotel> hotels = new ArrayList<>(); // association 0..* --> 0..* Hotel
     private final ArrayList<Excursion> excursions = new ArrayList<>(); // composition 1 --> 0..* Excursion
     private final ArrayList<Registration> registrations = new ArrayList<>(); // aggregation 1 --> 0..* Registration
-    final ArrayList<Companion> companions = new ArrayList<>(); // association 1 --> 0..* Companion
 
     /** Pre: name not empty, price >= 0.0, startDate is later than now, endDate is later than startDate. */
     public Conference(String name, double price, LocalDate startDate, LocalDate endDate) {
@@ -49,9 +48,10 @@ public class Conference {
         return new ArrayList<>(registrations);
     }
 
-    /** Pre: hotel does not already exist in hotels. */
+    /** Pre: The hotel is not connected to this conference. */
     public void addHotel(Hotel hotel) {
         hotels.add(hotel);
+        hotel.conferences.add(this);
     }
 
     /** Pre: name not empty, date is between startDate and endDate, organizer not empty, price >= 0.0. */

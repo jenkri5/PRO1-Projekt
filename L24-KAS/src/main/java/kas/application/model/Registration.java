@@ -27,13 +27,10 @@ public class Registration {
         this.arrival = arrival;
         this.departure = departure;
         if (companion != null) {
-            this.companion = new Companion(companion, participant, excursions);
-            conference.companions.add(this.companion);
+            this.companion = new Companion(companion, participant);
         } else
             this.companion = null;
         this.hotel = hotel;
-        if (hotel != null)
-            hotel.registrations.add(this);
         this.excursions = excursions;
         this.utilities = utilities;
     }
