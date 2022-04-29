@@ -44,13 +44,4 @@ public class Hotel {
         return utility;
     }
 
-    /**
-     * Return a list of the guests for this hotel.
-     */
-    public ArrayList<String> listGuests() {
-        ArrayList<String> list = new ArrayList<>();
-
-        return list;
-    }
-
 }
