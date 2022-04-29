@@ -10,7 +10,7 @@ public class Excursion {
     private final double price;
     final ArrayList<Companion> companions = new ArrayList<>(); // association 0..* --> 0..* Companion
 
-    /** Pre: name not empty, date = LocalDate, organizer not empty, price >= 0.0. */
+    /** Pre: name not empty, date is between startDate and endDate, organizer not empty, price >= 0.0. */
     public Excursion(String name, LocalDate date, double price) {
         this.name = name;
         this.date = date;

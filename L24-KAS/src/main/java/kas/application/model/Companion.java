@@ -8,7 +8,7 @@ public class Companion {
     private final Participant participant; // association 0..* --> 1
     private final ArrayList<Excursion> excursions; // association 0..* --> 0..* Excursion
 
-    /** Pre: name is not empty, participant = Participant, excursions may be empty. */
+    /** Pre: name is not empty. */
     public Companion(String name, Participant participant, ArrayList<Excursion> excursions) {
         this.name = name;
         this.participant = participant;

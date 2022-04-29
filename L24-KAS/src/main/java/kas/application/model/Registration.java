@@ -17,7 +17,7 @@ public class Registration {
     private final ArrayList<Utility> utilities; // association 1 --> 0..* Utility
 
     /**
-     * Pre: conference = Conference, participant = Participant, isSpeaker = boolean, arrival = LocalDate, departure = LocalDate, excursions = ArrayList of Excursion, utilities = ArrayList of Utility.
+     * Pre: The participant is not already registered for the conference, arrival is at latest endDate, departure is after arrival and at latest endDate.
      */
     public Registration(Conference conference, Participant participant, boolean isSpeaker, LocalDate arrival, LocalDate departure, String companion, Hotel hotel, ArrayList<Excursion> excursions, ArrayList<Utility> utilities) {
         this.conference = conference;

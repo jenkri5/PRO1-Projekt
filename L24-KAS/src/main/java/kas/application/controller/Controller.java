@@ -10,7 +10,7 @@ public class Controller {
 
     /**
      * Create a new conference.
-     * Pre: name not empty, price >= 0.0, startDate = LocalDate later than now, endDate = LocalDate later than startDate.
+     * Pre: name not empty, price >= 0.0, startDate is later than now, endDate is later than startDate.
      */
     public static Conference createConference(String name, double price, LocalDate startDate, LocalDate endDate) {
         Conference conference = new Conference(name, price, startDate, endDate);
@@ -24,7 +24,6 @@ public class Controller {
 
     /**
      * Delete a conference.
-     * Pre: conference = Conference.
      */
     public static void deleteConference(Conference conference) {
         Storage.deleteConference(conference);
@@ -32,7 +31,7 @@ public class Controller {
 
     /**
      * Create a new hotel.
-     * Pre: name not empty, price >= 0.0, startDate = LocalDate later than now, endDate = LocalDate later than startDate.
+     * Pre: name not empty, price >= 0.0, priceTwo >= 0.0.
      */
     public static Hotel createHotel(String name, double price, double priceTwo) {
         Hotel hotel = new Hotel(name, price, priceTwo);
@@ -46,7 +45,6 @@ public class Controller {
 
     /**
      * Delete a hotel.
-     * Pre: hotel = Hotel.
      */
     public static void deleteHotel(Hotel hotel) {
         Storage.deleteHotel(hotel);
@@ -68,7 +66,7 @@ public class Controller {
 
     /**
      * Update a participant.
-     * Pre: participant = Participant, name not empty, address not empty, city not empty, country not empty, phone not empty, email not empty.
+     * Pre: name not empty, address not empty, city not empty, country not empty, phone not empty, email not empty.
      */
     public static void updateParticipant(Participant participant, String name, String address, String city, String country, String phone, String email, String company, String companyPhone) {
         participant.setName(name);
@@ -85,7 +83,6 @@ public class Controller {
 
     /**
      * Delete a participant.
-     * Pre: participant = Participant.
      */
     public static void deleteParticipant(Participant participant) {
         Storage.deleteParticipant(participant);
@@ -93,7 +90,7 @@ public class Controller {
 
     /**
      * Add a hotel to a conference
-     * Pre: conference = Conference, hotel = Hotel.
+     * Pre: hotel does not already exist in conference hotels.
      */
     public static void addHotel(Conference conference, Hotel hotel) {
         conference.addHotel(hotel);
@@ -101,7 +98,7 @@ public class Controller {
 
     /**
      * Create an excursion in a conference
-     * Pre: conference = Conference, name is not empty, date = LocalDate between conference startDate and endDate, organizer is not empty, price >= 0.0.
+     * Pre: name not empty, date is between startDate and endDate, organizer not empty, price >= 0.0.
      */
     public static void createExcursion(Conference conference, String name, LocalDate date, double price) {
         conference.createExcursion(name, date, price);
@@ -109,7 +106,7 @@ public class Controller {
 
     /**
      * Create a registration to a conference
-     * Pre: conference = Conference, participant = Participant, isSpeaker = boolean, arrival = LocalDate between conference startDate and endDate, departure = LocalDate between arrival and conference endDate
+     * Pre: participant is not already registered, arrival is between startDate and endDate, departure is between arrival and endDate.
      */
     public static void createRegistration(Conference conference, Participant participant, boolean isSpeaker, LocalDate arrival, LocalDate departure, String companion, Hotel hotel, ArrayList<Excursion> excursions, ArrayList<Utility> utilities) {
         conference.createRegistration(participant, isSpeaker, arrival, departure, companion, hotel, excursions, utilities);
@@ -117,7 +114,7 @@ public class Controller {
 
     /**
      * Create a utility in a hotel
-     * Pre: hotel = Hotel, name is not empty, price >= 0.0.
+     * Pre: name is not empty, price >= 0.0.
      */
     public static void createUtility(Hotel hotel, String name, double price) {
         hotel.createUtility(name, price);
