@@ -163,8 +163,8 @@ public class ParticipantPane extends GridPane {
         ParticipantWindow dialog = new ParticipantWindow("Opdater Deltager", participant);
         dialog.showAndWait();
 
+        int index = lvwParticipants.getSelectionModel().getSelectedIndex();
         lvwParticipants.getItems().setAll(Controller.getParticipants());
-        int index = lvwParticipants.getItems().size() - 1;
         lvwParticipants.getSelectionModel().select(index);
     }
 
