@@ -26,13 +26,13 @@ public class Registration {
         this.isSpeaker = isSpeaker;
         this.arrival = arrival;
         this.departure = departure;
+        this.hotel = hotel;
+        this.excursions = excursions;
+        this.utilities = utilities;
         if (companionName != null) {
             companion = createCompanion(companionName, participant);
         } else
             companion = null;
-        this.hotel = hotel;
-        this.excursions = excursions;
-        this.utilities = utilities;
     }
 
     public Conference getConference() {
@@ -101,6 +101,9 @@ public class Registration {
     /** Pre: companionName is not empty. */
     public Companion createCompanion(String companionName, Participant participant) {
         Companion companion = new Companion(companionName, participant);
+        for (Excursion excursion : excursions) {
+            excursion.companions.add(companion);
+        }
         return companion;
     }
 
