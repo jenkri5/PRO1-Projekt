@@ -3,10 +3,7 @@ package kas.gui;
 import javafx.beans.value.ChangeListener;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import kas.application.controller.Controller;
@@ -70,15 +67,18 @@ public class ParticipantPane extends GridPane {
         lvwRegistrations.setPrefWidth(200.0);
         if (lvwParticipants.getSelectionModel().getSelectedItem() != null)
             lvwRegistrations.getItems().setAll(lvwParticipants.getSelectionModel().getSelectedItem().getRegistrations());
+        lvwRegistrations.setCellFactory(param -> new ListCell<>() {
+            @Override
+            protected void updateItem(Registration item, boolean empty) {
+                super.updateItem(item, empty);
 
-        HBox hbxRegistrationButtons = new HBox(10.0);
-        add(hbxRegistrationButtons, 2, 2);
-        hbxRegistrationButtons.setPadding(new Insets(10, 0, 0, 0));
-        hbxRegistrationButtons.setAlignment(Pos.BASELINE_CENTER);
-
-        Button btnCreateRegistration = new Button("Opret");
-        hbxRegistrationButtons.getChildren().add(btnCreateRegistration);
-        btnCreateRegistration.setOnAction(event -> createRegistrationAction());
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(item.getConference().getName());
+                }
+            }
+        });
 
         Label lblRegistration = new Label("Tilmelding");
         add(lblRegistration, 3, 0);
@@ -166,9 +166,6 @@ public class ParticipantPane extends GridPane {
         int index = lvwParticipants.getSelectionModel().getSelectedIndex();
         lvwParticipants.getItems().setAll(Controller.getParticipants());
         lvwParticipants.getSelectionModel().select(index);
-    }
-
-    private void createRegistrationAction() {
     }
 
 }

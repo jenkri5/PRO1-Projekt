@@ -19,18 +19,18 @@ public class ParticipantWindow extends Stage {
 
     /** Note: Nullable param employee. */
     public ParticipantWindow(String title, Participant participant) {
-        this.initStyle(StageStyle.UTILITY);
-        this.initModality(Modality.APPLICATION_MODAL);
-        this.setResizable(false);
+        initStyle(StageStyle.UTILITY);
+        initModality(Modality.APPLICATION_MODAL);
+        setResizable(false);
 
         this.participant = participant;
 
-        this.setTitle(title);
+        setTitle(title);
         GridPane pane = new GridPane();
-        this.initContent(pane);
+        initContent(pane);
 
         Scene scene = new Scene(pane);
-        this.setScene(scene);
+        setScene(scene);
     }
 
     // -------------------------------------------------------------------------
@@ -188,11 +188,11 @@ public class ParticipantWindow extends Stage {
         String company = txfCompany.getText().trim();
         String companyPhone = txfCompanyPhone.getText().trim();
         if (company.length() == 0) {
-            company = null;
             if (companyPhone.length() != 0) {
                 lblError.setText("Udfyld firma");
                 return;
             }
+            company = null;
             companyPhone = null;
         } else {
             if (companyPhone.length() == 0) {

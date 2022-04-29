@@ -104,8 +104,9 @@ public class Registration {
         return companion;
     }
 
-    @Override
-    public String toString() {
-        return conference.getName();
-    }
+//    @Override
+//    public String toString() {
+//        return conference.getName();
+//    }
+
 }
