@@ -189,6 +189,10 @@ public class ParticipantWindow extends Stage {
         String companyPhone = txfCompanyPhone.getText().trim();
         if (company.length() == 0) {
             company = null;
+            if (companyPhone.length() != 0) {
+                lblError.setText("Udfyld firma");
+                return;
+            }
             companyPhone = null;
         } else {
             if (companyPhone.length() == 0) {
