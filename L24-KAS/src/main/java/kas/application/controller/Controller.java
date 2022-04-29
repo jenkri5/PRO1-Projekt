@@ -129,10 +129,12 @@ public class Controller {
             list.add("Hotel: " + hotel.getName());
             for (Conference conference : hotel.getConferences()) {
                 for (Registration registration : conference.getRegistrations()) {
-                    if (registration.getCompanion() != null)
-                        list.add("   - " + registration.getParticipant().getName() + " + " + registration.getCompanion().getName() + "\n       Ankomst: " + registration.getArrival() + "\n       Afrejse: " + registration.getDeparture());
-                    else
-                        list.add("   - " + registration.getParticipant().getName() + "\n       Ankomst: " + registration.getArrival() + "\n       Afrejse: " + registration.getDeparture());
+                    if (hotel.equals(registration.getHotel())) {
+                        if (registration.getCompanion() != null)
+                            list.add("   - " + registration.getParticipant().getName() + " + " + registration.getCompanion().getName() + "\n       Ankomst: " + registration.getArrival() + "\n       Afrejse: " + registration.getDeparture());
+                        else
+                            list.add("   - " + registration.getParticipant().getName() + "\n       Ankomst: " + registration.getArrival() + "\n       Afrejse: " + registration.getDeparture());
+                    }
                 }
             }
         }
