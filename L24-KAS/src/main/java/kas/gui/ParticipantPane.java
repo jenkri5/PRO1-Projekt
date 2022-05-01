@@ -177,7 +177,7 @@ public class ParticipantPane extends GridPane {
         if (participant == null)
             return;
 
-        SelectionWindow dialog = new SelectionWindow(participant);
+        RegistrationWindow dialog = new RegistrationWindow(participant);
         dialog.showAndWait();
 
         lvwRegistrations.getItems().setAll(participant.getRegistrations());

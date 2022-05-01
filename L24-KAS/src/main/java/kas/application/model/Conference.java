@@ -12,6 +12,8 @@ public class Conference {
     private final ArrayList<Hotel> hotels = new ArrayList<>(); // association 0..* --> 0..* Hotel
     private final ArrayList<Excursion> excursions = new ArrayList<>(); // composition 1 --> 0..* Excursion
     private final ArrayList<Registration> registrations = new ArrayList<>(); // composition 1 --> 0..* Registration
+    final ArrayList<Participant> participants = new ArrayList<>(); // association 0..* --> 0..* Participant
+
 
     /** Pre: name not empty, price >= 0.0, startDate is later than now, endDate is later than startDate. */
     public Conference(String name, double price, LocalDate startDate, LocalDate endDate) {
@@ -47,6 +49,10 @@ public class Conference {
 
     public ArrayList<Registration> getRegistrations() {
         return new ArrayList<>(registrations);
+    }
+
+    public ArrayList<Participant> getParticipants() {
+        return new ArrayList<>(participants);
     }
 
     /** Pre: The hotel is not connected to this conference. */

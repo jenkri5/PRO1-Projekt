@@ -104,10 +104,11 @@ public class Controller {
 
     /**
      * Create a registration to a conference
+     * Note: nullable parameter companion, hotel
      * Pre: participant is not already registered, arrival is between startDate and endDate, departure is between arrival and endDate.
      */
-    public static void createRegistration(Conference conference, Participant participant, boolean isSpeaker, LocalDate arrival, LocalDate departure, String companion, Hotel hotel, ArrayList<Excursion> excursions, ArrayList<Utility> utilities) {
-        conference.createRegistration(participant, isSpeaker, arrival, departure, companion, hotel, excursions, utilities);
+    public static void createRegistration(Conference conference, Participant participant, boolean isSpeaker, LocalDate arrival, LocalDate departure, String companionName, Hotel hotel, ArrayList<Excursion> excursions, ArrayList<Utility> utilities) {
+        conference.createRegistration(participant, isSpeaker, arrival, departure, companionName, hotel, excursions, utilities);
     }
 
     /**

@@ -17,6 +17,7 @@ public class Registration {
     private final ArrayList<Utility> utilities; // association 1 --> 0..* Utility
 
     /**
+     * Note: nullable parameter companion, hotel
      * Pre: The participant is not already registered for the conference, arrival is at latest endDate, departure is after arrival and at latest endDate, content of excursions are connected to conference, content of utilities are connected to hotel.
      */
     public Registration(Conference conference, Participant participant, boolean isSpeaker, LocalDate arrival, LocalDate departure, String companionName, Hotel hotel, ArrayList<Excursion> excursions, ArrayList<Utility> utilities) {
@@ -33,6 +34,8 @@ public class Registration {
         this.hotel = hotel;
         this.excursions = excursions;
         this.utilities = utilities;
+        participant.conferences.add(conference);
+        conference.participants.add(participant);
     }
 
     public Conference getConference() {

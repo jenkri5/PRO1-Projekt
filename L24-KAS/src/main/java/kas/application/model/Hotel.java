@@ -44,4 +44,8 @@ public class Hotel {
         return utility;
     }
 
+    @Override
+    public String toString() {
+        return name;
+    }
 }

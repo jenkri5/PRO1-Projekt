@@ -13,6 +13,7 @@ public class Participant {
     private String company; // nullable
     private String companyPhone; // nullable
     final ArrayList<Registration> registrations = new ArrayList<>(); // association 1 --> 0..* Registration
+    final ArrayList<Conference> conferences = new ArrayList<>(); // association 0..* --> 0..* Conference
 
     /** Pre: name not empty, address not empty, city not empty, country not empty, phone not empty, email not empty. */
     public Participant(String name, String address, String city, String country, String phone, String email, String company, String companyPhone) {
@@ -100,6 +101,10 @@ public class Participant {
 
     public ArrayList<Registration> getRegistrations() {
         return new ArrayList<>(registrations);
+    }
+
+    public ArrayList<Conference> getConferences() {
+        return new ArrayList<>(conferences);
     }
 
     @Override
