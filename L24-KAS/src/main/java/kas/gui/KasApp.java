@@ -19,7 +19,6 @@ public class KasApp {
 
     public static void initStorage() {
         Controller.createConference("Hav og Himmel", 1500.0, LocalDate.of(2021, 12, 18), LocalDate.of(2021, 12, 20));
-        Controller.createConference("Tag og Skimmel", 3000.0,LocalDate.of(2022, 4, 8), LocalDate.of(2022, 4, 10));
 
         Controller.createHotel("Den Hvide Svane", 1050.0, 1250.0);
         Controller.createHotel("Hotel Phønix", 700.0, 800.0);
@@ -30,7 +29,6 @@ public class KasApp {
         Controller.createParticipant("Ulla Hansen", "Gaden 3", "Løvel", "Danmark", "11111111", "ulla.hansen123@yahoo.com",null, null);
         Controller.createParticipant("Peter Sommer", "Vejen 4, 3-th", "Aarhus", "Danmark", "12345678", "therealpetersommer@sommer.dk",null, null);
         Controller.createParticipant("Lone Jensen", "Väg 5", "Malmö", "Sverige", "87654321", "ljensen32@icloud.com","IKEA", "23412341");
-        Controller.createParticipant("John Doe", "Adresse", "By", "Land", "Telefon", "Email", "Firma", "Firma telefon");
 
         Controller.addHotel(Controller.getConferences().get(0), Controller.getHotels().get(0));
         Controller.addHotel(Controller.getConferences().get(0), Controller.getHotels().get(1));

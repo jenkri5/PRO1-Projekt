@@ -8,6 +8,7 @@ public class Hotel {
     private final double price; // per night
     private final double priceTwo; // per night
     private final ArrayList<Utility> utilities = new ArrayList<>(); // composition 1 --> 0..* Utility
+    final ArrayList<Registration> registrations = new ArrayList<>(); // association 0..* --> 0..* Registration
     final ArrayList<Conference> conferences = new ArrayList<>(); // association 0..* --> 0..* Conference
 
     /** Pre: name not empty, price >= 0.0, priceTwo >= 0.0. */
@@ -31,6 +32,10 @@ public class Hotel {
 
     public ArrayList<Utility> getUtilities() {
         return new ArrayList<>(utilities);
+    }
+
+    public ArrayList<Registration> getRegistrations() {
+        return new ArrayList<>(registrations);
     }
 
     public ArrayList<Conference> getConferences() {

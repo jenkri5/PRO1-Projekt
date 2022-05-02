@@ -2,8 +2,6 @@ package kas.gui;
 
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
@@ -12,14 +10,13 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.StringConverter;
 import kas.application.controller.Controller;
 import kas.application.model.*;
 
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -28,27 +25,10 @@ public class RegistrationWindow extends Stage {
     private Participant participant; // nullable
     private Conference conference; // nullable
 
-    public RegistrationWindow(Participant participant, Conference conference) {
-        initStyle(StageStyle.UTILITY);
-        initModality(Modality.APPLICATION_MODAL);
-        setResizable(false);
-
-        this.participant = participant;
-        this.conference = conference;
-
-        setTitle("Tilmelding");
-        GridPane pane = new GridPane();
-        initContent(pane);
-
-        Scene scene = new Scene(pane);
-        setScene(scene);
-    }
-
     public RegistrationWindow(Participant participant) {
         initStyle(StageStyle.UTILITY);
         initModality(Modality.APPLICATION_MODAL);
         setResizable(false);
-        setHeight(HEIGHT);
 
         this.participant = participant;
         conference = null;
@@ -75,7 +55,9 @@ public class RegistrationWindow extends Stage {
 
         setTitle("Tilmeld " + conference.getName());
         GridPane pane = new GridPane();
-        pane.add(new Label(conference.getName()), 0, 3);
+        TextField txfConference = new TextField(conference.getName());
+        txfConference.setEditable(false);
+        pane.add(txfConference, 0, 3);
         initContent(pane);
 
         Scene scene = new Scene(pane);
@@ -92,11 +74,12 @@ public class RegistrationWindow extends Stage {
     private final DatePicker dpDeparture = new DatePicker();
     private final TextField txfCompanion = new TextField();
     private final VBox vBoxExcursions = new VBox(10.0);
+    private final ScrollPane spExcursions = new ScrollPane();
     private final ArrayList<CheckBox> cbxExcursions = new ArrayList<>();
     private final VBox vBoxUtilities = new VBox(10.0);
+    private final ScrollPane spUtilities = new ScrollPane();
     private final ArrayList<CheckBox> cbxUtilities = new ArrayList<>();
     private final Label lblError = new Label();
-    private final double HEIGHT = 500.0;
 
     private void initContent(GridPane pane) {
         pane.setPadding(new Insets(10));
@@ -147,7 +130,7 @@ public class RegistrationWindow extends Stage {
             cbxConferences.setItems(FXCollections.observableArrayList(conferences));
 
             pane.add(cbxConferences, 0, 3);
-            pane.setValignment(cbxConferences, VPos.TOP);
+            GridPane.setValignment(cbxConferences, VPos.TOP);
             cbxConferences.setPrefWidth(200);
 
             if (!cbxConferences.getItems().isEmpty())
@@ -159,18 +142,17 @@ public class RegistrationWindow extends Stage {
         if (conference != null) {
             dpArrival.setValue(conference.getStartDate());
             dpDeparture.setValue(conference.getEndDate());
-        } else {
-            dpArrival.setValue(LocalDate.now());
-            dpDeparture.setValue(LocalDate.now());
         }
 
         Label lblArrival = new Label("Ankomst");
         pane.add(lblArrival, 0, 5);
         pane.add(dpArrival, 0, 6);
+        dpArrival.setEditable(false);
 
         Label lblDeparture = new Label("Afgang");
         pane.add(lblDeparture, 0, 7);
         pane.add(dpDeparture, 0, 8);
+        dpDeparture.setEditable(false);
 
         Label lblCompanion = new Label("Ledsager");
         pane.add(lblCompanion, 1, 0);
@@ -182,7 +164,10 @@ public class RegistrationWindow extends Stage {
         Label lblExcursions = new Label("Udflugter");
         pane.add(lblExcursions, 1, 2);
 
-        pane.add(vBoxExcursions, 1, 3, 1, 6);
+        spExcursions.setPrefHeight(100);
+        pane.add(spExcursions, 1,3, 1, 6);
+
+        updateExcursions();
 
         Label lblHotel = new Label("Hotel");
         pane.add(lblHotel, 0, 9);
@@ -192,15 +177,30 @@ public class RegistrationWindow extends Stage {
         if (conference != null)
             hotels.addAll(conference.getHotels());
         cbxHotels.setItems(FXCollections.observableArrayList(hotels));
+        cbxHotels.setConverter(new StringConverter<>() {
+            @Override
+            public String toString(Hotel object) {
+                if (object != null)
+                    return object.getName() + ", " + object.getPrice() + "/" + object.getPriceTwo() + " kr";
+                else
+                    return null;
+            }
+
+            @Override
+            public Hotel fromString(String string) {
+                return null;
+            }
+        });
         cbxHotels.getSelectionModel().select(0);
 
         pane.add(cbxHotels, 0, 10);
-        pane.setValignment(cbxHotels, VPos.TOP);
+        GridPane.setValignment(cbxHotels, VPos.TOP);
         cbxHotels.setPrefWidth(200);
 
         Label lblUtilities = new Label("Tillæg");
         pane.add(lblUtilities, 1, 9);
-        pane.add(vBoxUtilities, 1, 10);
+        spUtilities.setPrefHeight(75);
+        pane.add(spUtilities, 1, 10);
 
         HBox hBoxButtons = new HBox(10);
         hBoxButtons.setAlignment(Pos.BASELINE_RIGHT);
@@ -250,11 +250,17 @@ public class RegistrationWindow extends Stage {
     private void updateExcursions() {
         vBoxExcursions.getChildren().clear();
         cbxExcursions.clear();
-        if (!txfCompanion.getText().isEmpty() && conference != null) {
+        if (conference != null) {
             for (Excursion excursion : conference.getExcursions()) {
-                cbxExcursions.add(new CheckBox(excursion.getName() + " (" + excursion.getDate() + "), " + excursion.getPrice() + " kr"));
+                cbxExcursions.add(new CheckBox(excursion.getName() + "\n(" + excursion.getDate() + "), " + excursion.getPrice() + " kr"));
             }
             vBoxExcursions.getChildren().addAll(cbxExcursions);
+            spExcursions.setContent(vBoxExcursions);
+            if (txfCompanion.getText().trim().isEmpty()) {
+                for (CheckBox checkBox : cbxExcursions) {
+                    checkBox.setDisable(true);
+                }
+            }
         }
     }
 
@@ -268,19 +274,18 @@ public class RegistrationWindow extends Stage {
                 cbxUtilities.add(new CheckBox(utility.getName() + ", " + utility.getPrice() + " kr"));
             }
             vBoxUtilities.getChildren().addAll(cbxUtilities);
+            spUtilities.setContent(vBoxUtilities);
         }
 
     }
 
     private void okAction() {
 
-//        participant = cbxParticipants.getSelectionModel().getSelectedItem();
         if (participant == null) {
             lblError.setText("Vælg deltager");
             return;
         }
 
-//        conference = cbxConferences.getSelectionModel().getSelectedItem();
         if (conference == null) {
             lblError.setText("Vælg konference");
             return;
@@ -301,7 +306,7 @@ public class RegistrationWindow extends Stage {
         }
 
         String companion = null;
-        if (!txfCompanion.getText().isEmpty())
+        if (!txfCompanion.getText().trim().isEmpty())
             companion = txfCompanion.getText().trim();
 
         Hotel hotel = cbxHotels.getSelectionModel().getSelectedItem();

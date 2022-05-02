@@ -36,6 +36,8 @@ public class Registration {
         this.utilities = utilities;
         participant.conferences.add(conference);
         conference.participants.add(participant);
+        if (hotel != null)
+            hotel.registrations.add(this);
     }
 
     public Conference getConference() {
@@ -103,8 +105,7 @@ public class Registration {
 
     /** Pre: companionName is not empty. */
     private Companion createCompanion(String companionName, Participant participant, ArrayList<Excursion> excursions) {
-        Companion companion = new Companion(companionName, participant, excursions);
-        return companion;
+        return new Companion(companionName, participant, excursions);
     }
 
 //    @Override

@@ -11,7 +11,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import kas.application.controller.Controller;
 import kas.application.model.Conference;
-import kas.application.model.Participant;
 
 public class ListPane extends GridPane {
 
@@ -67,13 +66,20 @@ public class ListPane extends GridPane {
         txaList.clear();
     }
 
+    public void updateConferences() {
+        txaList.clear();
+        lvwConferences.getItems().setAll(Controller.getConferences());
+        if (!lvwConferences.getItems().isEmpty())
+            lvwConferences.getSelectionModel().select(0);
+    }
+
     public void participantsAction() {
         Conference conference = lvwConferences.getSelectionModel().getSelectedItem();
         if (conference != null) {
             StringBuilder list = new StringBuilder();
             for (String string : conference.listParticipants())
                 list.append(string).append("\n");
-            txaList.setText(list.toString().toString());
+            txaList.setText(list.toString());
         } else {
             txaList.clear();
         }
@@ -97,4 +103,5 @@ public class ListPane extends GridPane {
             list.append(string).append("\n");
         txaList.setText(list.toString());
     }
+
 }
