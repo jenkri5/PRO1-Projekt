@@ -119,7 +119,7 @@ public class HotelWindow extends Stage {
             // do nothing
         }
         if (price < 0) {
-            lblError.setText("Ugyldigt pris");
+            lblError.setText("Ugyldig pris");
             return;
         }
 
@@ -130,7 +130,7 @@ public class HotelWindow extends Stage {
             // do nothing
         }
         if (priceTwo < 0) {
-            lblError.setText("Ugyldigt pris 2");
+            lblError.setText("Ugyldig pris 2");
             return;
         }
 
