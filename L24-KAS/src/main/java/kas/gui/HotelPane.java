@@ -7,7 +7,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import kas.application.controller.Controller;
-import kas.application.model.Conference;
 import kas.application.model.Hotel;
 import kas.application.model.Registration;
 import kas.application.model.Utility;

@@ -20,10 +20,6 @@ public class Storage {
         conferences.add(conference);
     }
 
-    public static void deleteConference(Conference conference) {
-        conferences.remove(conference);
-    }
-
     public static ArrayList<Hotel> getHotels() {
         return new ArrayList<>(hotels);
     }
@@ -32,20 +28,12 @@ public class Storage {
         hotels.add(hotel);
     }
 
-    public static void deleteHotel(Hotel hotel) {
-        hotels.remove(hotel);
-    }
-
     public static ArrayList<Participant> getParticipants() {
         return new ArrayList<>(participants);
     }
 
     public static void storeParticipant(Participant participant) {
         participants.add(participant);
-    }
-
-    public static void deleteParticipant(Participant participant) {
-        participants.remove(participant);
     }
 
 }
