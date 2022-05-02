@@ -15,7 +15,9 @@ public class Participant {
     final ArrayList<Registration> registrations = new ArrayList<>(); // association 1 --> 0..* Registration
     final ArrayList<Conference> conferences = new ArrayList<>(); // association 0..* --> 0..* Conference
 
-    /** Pre: name not empty, address not empty, city not empty, country not empty, phone not empty, email not empty. */
+    /**
+     * Note: nullable parameter company, companyPhone
+     * Pre: name not empty, address not empty, city not empty, country not empty, phone not empty, email not empty. */
     public Participant(String name, String address, String city, String country, String phone, String email, String company, String companyPhone) {
         this.name = name;
         this.address = address;
