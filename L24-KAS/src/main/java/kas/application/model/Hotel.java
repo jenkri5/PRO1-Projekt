@@ -1,7 +1,5 @@
 package kas.application.model;
 
-import kas.storage.Storage;
-
 import java.util.ArrayList;
 
 public class Hotel {
