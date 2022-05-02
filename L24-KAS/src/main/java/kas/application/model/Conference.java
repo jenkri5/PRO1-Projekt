@@ -102,7 +102,7 @@ public class Conference {
         list.add("Konference: " + name);
         for (Excursion excursion : excursions) {
             list.add("  Udflugt: " + excursion.getName() + " (" + excursion.getDate() + ")");
-            for (Companion companion : excursion.companions)
+            for (Companion companion : excursion.getCompanions())
                 list.add("    - " + companion.getName() + " (" + companion.getParticipant().getName() + ", " + companion.getParticipant().getPhone() + ")");
         }
         return list;

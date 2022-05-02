@@ -1,5 +1,7 @@
 package kas.application.model;
 
+import kas.storage.Storage;
+
 import java.util.ArrayList;
 
 public class Hotel {
@@ -11,7 +13,9 @@ public class Hotel {
     final ArrayList<Registration> registrations = new ArrayList<>(); // association 0..* --> 0..* Registration
     final ArrayList<Conference> conferences = new ArrayList<>(); // association 0..* --> 0..* Conference
 
-    /** Pre: name not empty, price >= 0.0, priceTwo >= 0.0. */
+    /**
+     * Pre: name not empty, price >= 0.0, priceTwo >= 0.0.
+     */
     public Hotel(String name, double price, double priceTwo) {
         this.name = name;
         this.price = price;
@@ -38,15 +42,32 @@ public class Hotel {
         return new ArrayList<>(registrations);
     }
 
-    public ArrayList<Conference> getConferences() {
-        return new ArrayList<>(conferences);
-    }
-
-    /** Pre: name not empty, price >= 0.0. */
+    /**
+     * Pre: name not empty, price >= 0.0.
+     */
     public Utility createUtility(String name, double price) {
         Utility utility = new Utility(name, price);
         utilities.add(utility);
         return utility;
+    }
+
+    /**
+     * Return a list of the guests in the hotel.
+     */
+    public ArrayList<String> listHotel() {
+        ArrayList<String> list = new ArrayList<>();
+        list.add("Hotel: " + name);
+        for (Conference conference : conferences) {
+            for (Registration registration : conference.getRegistrations()) {
+                if (this.equals(registration.getHotel())) {
+                    if (registration.getCompanion() != null)
+                        list.add("   - " + registration.getParticipant().getName() + " + " + registration.getCompanion().getName() + "\n       Ankomst: " + registration.getArrival() + "\n       Afrejse: " + registration.getDeparture());
+                    else
+                        list.add("   - " + registration.getParticipant().getName() + "\n       Ankomst: " + registration.getArrival() + "\n       Afrejse: " + registration.getDeparture());
+                }
+            }
+        }
+        return list;
     }
 
     @Override

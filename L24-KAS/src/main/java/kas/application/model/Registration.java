@@ -11,7 +11,7 @@ public class Registration {
     private final boolean isSpeaker;
     private final LocalDate arrival;
     private final LocalDate departure;
-    private final Companion companion; // nullable, association 1 --> 0..1 Companion
+    private final Companion companion; // nullable, composition 1 --> 0..1 Companion
     private final Hotel hotel; // nullable, association 1 --> 0..1 Hotel
     private final ArrayList<Excursion> excursions; // association 1 --> 0..* Excursion
     private final ArrayList<Utility> utilities; // association 1 --> 0..* Utility
@@ -107,10 +107,5 @@ public class Registration {
     private Companion createCompanion(String companionName, Participant participant, ArrayList<Excursion> excursions) {
         return new Companion(companionName, participant, excursions);
     }
-
-//    @Override
-//    public String toString() {
-//        return conference.getName();
-//    }
 
 }

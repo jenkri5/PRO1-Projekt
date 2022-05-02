@@ -23,13 +23,6 @@ public class Controller {
     }
 
     /**
-     * Delete a conference.
-     */
-    public static void deleteConference(Conference conference) {
-        Storage.deleteConference(conference);
-    }
-
-    /**
      * Create a new hotel.
      * Pre: name not empty, price >= 0.0, priceTwo >= 0.0.
      */
@@ -41,13 +34,6 @@ public class Controller {
 
     public static ArrayList<Hotel> getHotels() {
         return Storage.getHotels();
-    }
-
-    /**
-     * Delete a hotel.
-     */
-    public static void deleteHotel(Hotel hotel) {
-        Storage.deleteHotel(hotel);
     }
 
     /**
@@ -77,13 +63,6 @@ public class Controller {
         participant.setEmail(email);
         participant.setCompany(company);
         participant.setCompanyPhone(companyPhone);
-    }
-
-    /**
-     * Delete a participant.
-     */
-    public static void deleteParticipant(Participant participant) {
-        Storage.deleteParticipant(participant);
     }
 
     /**
@@ -125,17 +104,7 @@ public class Controller {
     public static ArrayList<String> listHotels() {
         ArrayList<String> list = new ArrayList<>();
         for (Hotel hotel : Storage.getHotels()) {
-            list.add("Hotel: " + hotel.getName());
-            for (Conference conference : hotel.getConferences()) {
-                for (Registration registration : conference.getRegistrations()) {
-                    if (hotel.equals(registration.getHotel())) {
-                        if (registration.getCompanion() != null)
-                            list.add("   - " + registration.getParticipant().getName() + " + " + registration.getCompanion().getName() + "\n       Ankomst: " + registration.getArrival() + "\n       Afrejse: " + registration.getDeparture());
-                        else
-                            list.add("   - " + registration.getParticipant().getName() + "\n       Ankomst: " + registration.getArrival() + "\n       Afrejse: " + registration.getDeparture());
-                    }
-                }
-            }
+            list.addAll(hotel.listHotel());
         }
         return list;
     }

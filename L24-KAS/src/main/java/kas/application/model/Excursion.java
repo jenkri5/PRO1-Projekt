@@ -29,4 +29,8 @@ public class Excursion {
         return price;
     }
 
+    public ArrayList<Companion> getCompanions() {
+        return new ArrayList<>(companions);
+    }
+
 }
