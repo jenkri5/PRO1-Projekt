@@ -46,8 +46,8 @@ public class Test {
         PercentDiscount d1 = new PercentDiscount(15);
         FixedDiscount d2 = new FixedDiscount(250, 1000);
 
-        c1.addDiscount(d1);
-        c2.addDiscount(d2);
+        c1.setDiscount(d1);
+        c2.setDiscount(d2);
 
         System.out.println(c1.totalBuy());
         System.out.println(c1.totalBuyWithDiscount());

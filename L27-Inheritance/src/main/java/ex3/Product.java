@@ -1,6 +1,7 @@
 package ex3;
 
 public class Product {
+
     private final int number;
     private String name;
     private double unitPrice;

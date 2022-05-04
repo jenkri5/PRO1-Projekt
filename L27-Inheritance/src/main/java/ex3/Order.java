@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
+
     private final int number;
 
     // composition 1 --> 0..* OrderLine

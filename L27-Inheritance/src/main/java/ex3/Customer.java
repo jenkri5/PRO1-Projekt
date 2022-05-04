@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Customer {
+
     private String name;
     private final LocalDate birthday;
 
@@ -49,12 +50,12 @@ public class Customer {
         return this.discount;
     }
 
-    /** Pre: The customer does not have a discount */
-    public void addDiscount(Discount discount) {
+    /** Pre: This customer is not connected to a discount */
+    public void setDiscount(Discount discount) {
         this.discount = discount;
     }
 
-    /** Pre: The customer has a discount */
+    /** Pre: This customer is connected to a discount */
     public void removeDiscount() {
         this.discount = null;
     }

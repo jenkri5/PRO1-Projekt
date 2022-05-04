@@ -1,6 +1,7 @@
 package ex3;
 
 public class OrderLine {
+
     private final int lineNumber;
     private final int count;
 
