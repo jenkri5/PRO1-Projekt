@@ -32,6 +32,7 @@
         <module>L22 Architecture</module>
         <module>l23-opsamling</module>
         <module>L24-KAS</module>
+        <module>L27-Inheritance</module>
     </modules>
 
     <dependencies>
